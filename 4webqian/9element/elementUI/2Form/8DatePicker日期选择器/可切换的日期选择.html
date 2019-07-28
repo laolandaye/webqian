@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.6/lib/theme-chalk/index.css");
+		</style>
+		<link rel="stylesheet" href="可切换的日期选择.css" />
+	</head>
+	<body>
+		<div id='app'>
+			<div>可切换的日期选择,默认选择当前时间</div>
+			<div class="search-bus">
+                <el-radio-group v-model="xForm.dateType" @change="handleRadioChange">
+					<el-radio label="year">年</el-radio>
+					<el-radio label="month">月</el-radio>
+					<el-radio label="date">日</el-radio>
+				  </el-radio-group>
+					  
+				<el-date-picker v-model="xForm.dateValue" :type="xForm.dateType" 
+					placeholder="选择日期"  :value-format="xForm.dateFormat">
+				</el-date-picker>	 
+            </div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+		<script type="text/javascript" src="../../js/common.js" ></script>
+		<script type="text/javascript" src="可切换的日期选择.js"></script>
+	</body>
+<html>

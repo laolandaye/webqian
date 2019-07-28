@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="ued-components-latest/theme-blue/ued-components.min.css">
+
+
+    <style>
+        .icon2 {
+            position: relative; /* 父相 */
+        }
+        .icon2 .icon {
+            color: #F6383D;
+            font-size: 30px;
+        }
+        .icon2 .icon2-info{
+            position: absolute; /* 子绝 */
+            left: 0px;
+            top: 3px;
+
+            width: 30px;        /* 长宽 */
+            height: 30px;
+            display: inline-block;
+            text-align: center; /* 内容居中 */
+
+            font-size: 10px;
+            font-weight: 900;
+            color: #001dff;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="icon2">
+    <span class="icon el-icon-location"></span>
+    <span class="icon2-info">1</span>
+</div>
+
+<div class="icon2">
+    <span class="icon el-icon-location"></span>
+    <span class="icon2-info">20</span>
+</div>
+
+</body>
+</html>

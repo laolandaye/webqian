@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>变化的覆盖物.html</title>
+    <link rel="stylesheet" href="变化的覆盖物.css"/>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id='app'>
+    <div>
+        <el-button type="primary" @click="changeClick('point')">楼宇画点</el-button>
+        <el-button type="primary" @click="changeClick('kuai')">区块画块</el-button>
+        <el-select @change="changeChange" placeholder="按照顺序"  collapse-tags>
+            <el-option label="第一次" value="1"></el-option>
+            <el-option label="纯加" value="2"></el-option>
+            <el-option label="纯减" value="3"></el-option>
+            <el-option label="加减" value="4"></el-option>
+            <el-option label="空" value="5"></el-option>
+        </el-select>
+        <el-button type="primary" @click="changeClick('project')">项目画块（区块）</el-button>
+        <el-button type="primary" @click="changeClick('companys')">企业画点(楼宇)</el-button>
+    </div>
+    <div id='mapcontent'>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=6741a24ea9db17f576445e97a80ac193"></script>
+<script type="text/javascript" src="aaa.js"></script>
+<script type="text/javascript" src="../../static/common.js"></script>
+<script type="text/javascript" src="变化的覆盖物.js"></script>
+</body>
+<html>

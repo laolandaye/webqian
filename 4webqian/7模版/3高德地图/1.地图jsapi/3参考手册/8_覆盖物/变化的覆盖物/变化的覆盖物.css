@@ -1,0 +1,66 @@
+body {
+    margin: 0px;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+#mapcontent {
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 15;
+}
+
+.animations1 {
+    border-radius: 50%;
+    background: rgba(255,255,0,0.2);
+    box-shadow: 0 0 5px #FFF100;
+    transition: width 2s, height 2s, transform 2s;
+    animation: nucleus 2s infinite linear;
+}
+.animations2 {
+    background: rgba(255,255,0,0.2);
+    border-radius: 50%;
+    transition: width 2s, height 2s, transform 2s;
+}
+.animations3 {
+    background: rgba(255,255,0,0.2);
+    border-radius: 50%;
+    transition: width 2s, height 2s, transform 2s;
+}
+
+/* 自定义动画执行 */
+@keyframes nucleus {
+    0% {
+        -webkit-transform:translateZ(0) scale(1, 1);
+    }
+    25% {
+        -webkit-transform:translateZ(0) scale(1.25, 1.25);
+    }
+    50% {
+        -webkit-transform:translateZ(0) scale(1.5, 1.5);
+    }
+    75% {
+        -webkit-transform:translateZ(0) scale(1.75, 1.75);
+    }
+    100% {
+        -webkit-transform:translateZ(0) scale(2, 2);
+    }
+}
+
+.amap-marker {
+    /*position: relative;*/
+}
+
+.amap-marker-label {
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+    color: #000000;
+   /* position: absolute;
+    left: 35%;
+    top: 20%;*/
+}

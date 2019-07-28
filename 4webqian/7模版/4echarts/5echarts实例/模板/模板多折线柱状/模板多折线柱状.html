@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="模板多折线柱状.css" />
+	</head>
+	<body>
+
+	<object data="../操作说明.html" type="text/x-scriptlet" height="570" width="100%"></object>
+	<div>
+		数据处理：
+		<ul>
+			<li><img src="../img/模板多折线柱状/lengData.png"><br /></li>
+			<li><img src="../img/模板多折线柱状/series.png"></li>
+			<li><img src="../img/模板多折线柱状/seriesData.png"></li>
+		</ul>
+	</div>
+	<div>
+		文档说明：
+		<ul>
+			<li class="li-one must">ref:(mustbe)</li> 1.开始ref指向 dom节点，2.然后是ajax返回的数据（监测数据）3.qylrfx 取代item数据,方便再次渲染 self.initDzzmbChart(self.qylrfx)
+			<li class="li-one must">data:(mustbe)-->xAxis0Data,seriesData</li> ajax:返回的数据
+				<br />&nbsp;&nbsp;<img src="../img/模板多折线柱状/ajax1.png">
+
+			<li class="li-one must">legends:-->legendData,series</li>
+				<ul>
+					<li class="li-two must">val:(mustbe)</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">legendData -> legend.data</li>
+							<li class="li-three">series -> series.name</li>
+						</ul>
+					</div>
+
+					<li class="li-two must">key:(mustbe)</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">series.data</li>
+						</ul>
+					</div>
+
+					<li class="li-two">type:</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">series.type:可选：'line','bar',默认用柱状 'bar'</li>
+						</ul>
+					</div>
+
+					<li class="li-two">yAxisIndex:用于柱状折线图</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">series.yAxisIndex:可选：取不同的横坐标</li>
+						</ul>
+					</div>
+
+					<li class="li-two">stack:用于柱状折线图</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">series.stack:可选：柱子是否重叠，默认取得key，绝对不重合</li>
+						</ul>
+					</div>
+
+				</ul>
+
+			<li class="li-one must">xAxis:-->xAxis0Data</li>
+				<ul>
+					<li class="li-two must">key:(和yAxis二选一)</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">xAxis0Data -> xAxis.data</li>
+						</ul>
+					</div>
+
+					<li class="li-two must">name:(mustbe)</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">tooltip.formatter</li>
+							<li class="li-three">xAxis.name</li>
+						</ul>
+					</div>
+
+					<li class="li-two">type:(和xAxis的type相反存在，配合用在竖着的图)</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">xAxis.type： 默认value</li>
+						</ul>
+					</div>
+
+					<li class="li-two">boundaryGap:</li>
+					<div class="say">
+						用处说明：
+						<ul>
+							<li class="li-three">xAxis.boundaryGap：柱子间距，默认false，eg:['20%', '20%']</li>
+						</ul>
+					</div>
+
+					<li class="li-two">axisLabel</li>
+					<div class="say">
+						rotate 用处说明：角度倾斜
+						<ul>
+							<li class="li-three">xAxis.axisLabel.rotate：默认值0</li>
+						</ul>
+						formatter 用处说明：坐标显示格式化
+						<ul>
+							<li class="li-three">xAxis.axisLabel.formatter：默认不处理</li>
+						</ul>
+					</div>
+				</ul>
+
+			<li class="li-one must">yAxis:</li>
+			<ul><li class="li-two must">key:(和xAxis二选一)</li>
+				<div class="say">
+					用处说明：
+					<ul>
+						<li class="li-three">yAxis0Data -> yAxis.data</li>
+					</ul>
+				</div>
+
+				<li class="li-two must">name:(mustbe)</li>
+				<div class="say">
+					用处说明：
+					<ul>
+						<li class="li-three">tooltip.formatter</li>
+						<li class="li-three">yAxis.name</li>
+					</ul>
+				</div>
+
+				<li class="li-two">type:(和 yAxis 的type相反存在，配合用在竖着的图)</li>
+				<div class="say">
+					用处说明：
+					<ul>
+						<li class="li-three">yAxis.type： 默认 category</li>
+					</ul>
+				</div>
+			</ul>
+
+			<li class="li-one">grid:</li>
+			<ul><li class="li-two">position:</li>
+				<div class="say">
+					用处说明：
+					<ul>
+						<li class="li-three">上下左右，默认['5%', '15%', '10%', '5%']</li>
+					</ul>
+				</div>
+
+			</ul>
+
+			<li class="li-one">tooltip:</li>
+			<ul><li class="li-two">axisPointer:坐标轴指示器，坐标轴触发有效</li>
+				<div class="say">
+					axis 用处说明：
+					<ul>
+						<li class="li-three">tooltip.axisPointer.axis，默认'x'</li>
+					</ul>
+				</div>
+
+			</ul>
+		</ul>
+	</div>
+
+	<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+	<div id="app">
+
+		legends: 配置几条显示几条
+		<hr />
+		多柱状
+	    <div class="main"><div class="chart" ref="qylrfx"></div></div>
+		<div class="main"><div class="chart" ref="gyczbq"></div></div>
+		<hr />
+		多折线
+		<div class="main"><div class="chart" ref="qylrfx2"></div></div>
+		<div class="main"><div class="chart" ref="gyczbq2"></div></div>
+		<hr />
+		柱状折线图：name2,yAxisIndex,stack
+		<div class="main"><div class="chart" ref="gycz"></div></div>
+		<div class="main"><div class="chart" ref="czzzqs"></div></div>
+		<hr />
+		竖的：
+		yAxis 和 xAxis 的type相反存在，配合用在竖着的图,什么有数据指定他的key
+		<div class="main2"><div class="chart" ref="gyhyzb"></div></div>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>	
+	<script type="text/javascript" src="../../static/echarts/js/echarts.js" ></script>
+	<script type="text/javascript" src="../../static/qhjscEchartsTheme.js" ></script>
+	<script type="text/javascript" src="staticData.js" ></script>
+	<script type="text/javascript" src="模板多折线柱状.js" ></script>
+	</body>
+</html>

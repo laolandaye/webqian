@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05_Function扩展</title>
+</head>
+<body>
+<!--
+1. Function.prototype.bind(obj) :
+  * 作用: 将函数内的this绑定为obj, 并将函数返回
+2. 面试题: 区别bind()与call()和apply()?
+  * 都能指定函数中的this
+  * call()/apply()是立即调用函数
+  * bind()是将函数返回
+-->
+<script type="text/javascript">
+		var obj = {username: 'kibi'};
+		function foo(data) {
+			console.log(this, data);
+		}
+		//传入参数的形式
+		foo.call(obj, 33);
+		foo.apply(obj, [33]);
+	
+    function fun(age) {
+        this.name = 'kobe';
+        this.age = age;
+    }
+    var obj = {};
+    fun.bind(obj, 12)();
+    console.log(obj.name, obj.age);
+
+
+</script>
+</body>
+</html>

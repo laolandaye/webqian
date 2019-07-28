@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.7/lib/theme-chalk/index.css");
+		</style>
+		<link rel="stylesheet" href="单选按钮.css" />
+	</head>
+	<body>
+		<div id='app'>
+			<div>搜索定位树</div>
+			<div >
+				<el-checkbox-group v-model="checkboxGroup4" size="mini" :max = "1" @change="handleCheckedCitiesChange(checkboxGroup4)">
+					<el-checkbox-button v-for="city in cities" :label="city" :key="city" @click="check(city)">{{city}}</el-checkbox-button>
+				</el-checkbox-group>
+            </div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+		<script type="text/javascript" src="../../../js/common.js" ></script>
+		<script type="text/javascript" src="单选按钮.js"></script>
+	</body>
+<html>

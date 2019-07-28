@@ -1,0 +1,33 @@
+#overflowTest {
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    width: 200px;
+    height: 100px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+/* 设置滚动条样式 */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: rgba(29,156,239,0.2);
+	-webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	height: 5px;
+	background-color: #626262;
+	-webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	width: 5px;
+	background-color: #CCCCCC;
+	-webkit-border-radius: 6px;
+}
+

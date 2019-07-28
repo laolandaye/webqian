@@ -1,0 +1,63 @@
+#app {
+	/*position: relative;*/
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+#main {
+ 	width: 600px;
+	height:400px;
+	color:#0180EC;
+	background-color:#001084;
+}
+
+.chart {
+	width: 100%;
+	height: 100%;
+}
+
+/* 块级弹性布局 */
+.flex {
+	display: flex;
+}
+
+/* 行内级弹性布局 */
+.inline-flex {
+	display: inline-flex;
+}
+
+/* 分配所有剩余空间 */
+.flex-1 {
+	flex: 1;
+}
+/* 子项目纵向布局 */
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 子项目水平垂直居中 */
+.center-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* 子项目水平两端对齐，垂直居中 */
+.between-center {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+/* 子项目水平相同间距，垂直居中*/
+.around-center {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+/* 行内flex布局，不自动撑满100%宽度 */
+.flex-inline {
+	display: inline-flex !important;
+}

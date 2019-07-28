@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>子绝父相</title>
+		<style>
+			.animations1 {
+				background-color: #FFF100;
+				/*box-shadow: 0 0 1px #FFF100;*/
+				border-radius: 50%;		/*变圆*/
+				position: relative;
+				left: 150px;
+				top: 100px;
+			}
+			
+			.animations2 {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				border-style: dotted;
+				border-width: 1px;
+				border-color:#FFF100;
+				border-radius: 50%;		/*变圆*/
+				/*box-shadow: 0 0 2px #FFF100;*/
+				animation: nucleus 1s infinite linear;
+			}
+			
+			/* 自定义动画执行 */
+			@keyframes nucleus {
+				0% {
+					transform: scale(1, 1);
+				}
+				25% {
+					transform: scale(2, 2);
+				}
+				50% {
+					transform: scale(3, 3);
+				}
+				75% {
+					transform: scale(4, 4);
+				}
+				100% {
+					transform: scale(5, 5);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="animations1"  style="width: 10px;height: 10px;">
+			<div class="animations2" style="width: 8px;height: 8px;">
+			</div></div>
+		
+		
+	</body>
+
+</html>

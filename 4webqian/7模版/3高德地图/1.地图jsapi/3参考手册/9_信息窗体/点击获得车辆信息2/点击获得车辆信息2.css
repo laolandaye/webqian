@@ -1,0 +1,118 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	min-width: 1000px;
+	min-height: 550px;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+}
+ 
+#mapcontent {
+	position: absolute;
+	top: 40px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 15;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: rgba(29,156,239,0.2);
+	-webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	height: 5px;
+	background-color: #626262;
+	-webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	width: 5px;
+	background-color: #CCCCCC;
+	-webkit-border-radius: 6px;
+}
+
+.amap-info-content {
+	background: #00000000;
+}
+.amap-info-content.amap-info-outer {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #2099FF;
+	/*border-radius: 3%;*/
+}
+
+.car-info-div {
+	max-width: 512px;
+	max-height: 200px;
+	overflow-x: auto;
+	overflow-y: auto;
+	white-space: nowrap;
+	background-color: rgba(5, 44, 126, 0.9);
+	color: #5995ff;
+}
+
+.car-info-title {
+	 display: flex;
+ }
+
+.car-info-centent {
+	display: flex;
+}
+.car-info-left {
+	width: 100px;
+	padding: 2px;
+	border-bottom: dashed  1px #2099FF;
+	border-right: dashed  1px #2099FF;
+}
+
+
+.car-info-right {
+	width: 300px;
+	padding: 2px;
+	border-bottom: dashed  1px #2099FF;
+	border-right: dashed  1px #2099FF;
+	white-space: normal;
+}
+.car-info-title .car-info-left {
+	border-bottom: solid 1px #2099FF;
+	border-right: solid 1px #2099FF;
+}
+
+.car-info-title .car-info-right {
+	border-bottom: solid 1px #2099FF;
+	border-right: solid 0px #2099FF;
+}
+
+.car-info-centent {
+	color: #75a3c1;
+	font-size: 12px;
+	line-height: 12px;
+	/*max-width: 300px;*/
+}
+.car-info-centent .car-info-left {
+
+}
+
+.car-info-centent .car-info-right {
+	border-right: solid 0px #2099FF;
+}
+
+.car-info-centent:last-child .car-info-right{
+	border-bottom: dashed  0px #2099FF;
+}
+
+.car-info-centent:last-child .car-info-left{
+	border-bottom: dashed  0px #2099FF;
+}
+

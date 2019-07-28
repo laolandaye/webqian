@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.7/lib/theme-chalk/index.css");
+		</style>
+		<link rel="stylesheet" href="站点下拉可搜索.css" />
+	</head>
+	<body>
+		<div id='app'>
+			<div>站点下拉可搜索</div>
+			<div class="search-bus">
+                <el-select v-model="value" clearable  placeholder="请选择" size="mini" filterable>
+					<el-option v-for="item in zdstationNums" :key="item.value" :label="item.value" :value="item.value" >
+					</el-option>
+				</el-select>
+            </div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+		<script type="text/javascript" src="../../js/common.js" ></script>
+		<script type="text/javascript" src="站点下拉可搜索.js"></script>
+	</body>
+<html>

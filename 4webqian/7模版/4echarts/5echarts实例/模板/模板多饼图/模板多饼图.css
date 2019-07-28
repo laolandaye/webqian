@@ -1,0 +1,15 @@
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.el-row .chart {
+    height: 200px;
+}
+
+/* 原生标签 */
+.el-row {
+    height: 200px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>01_字符串扩展</title>
+	</head>
+
+	<body>
+		<!--
+1. includes(str) : 判断是否包含指定的字符串
+2. startsWith(str) : 判断是否以指定字符串开头
+3. endsWith(str) : 判断是否以指定字符串结尾
+4. repeat(count) : 重复指定次数
+-->
+		<script type="text/javascript">
+			let arr = [1, 1, 2, 9 ,3, 4, 6, 5, 1, 1, 1 , 9];
+
+			for(let i = 0; i < arr.length; i++) {
+				console.log(arr[i])
+			}
+
+			function unique1(arr) {
+				var hash = [];
+				for(var i = 0; i < arr.length; i++) {
+					if(hash.indexOf(arr[i]) == -1) {
+						hash.push(arr[i]);
+					}
+				}
+				return hash;
+			}
+			
+			arr = unique1(arr);
+		</script>
+	</body>
+
+</html>

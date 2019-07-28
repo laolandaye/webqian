@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>test</title>
+		<style type="text/css">
+			html {
+				height: 100%;
+				margin: 0;
+			}
+			
+			body {
+				height: 100%;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body style='overflow:scroll;overflow-x:hidden;overflow-y:hidden'>
+		<!-- 容器 -->
+		<div style="width: 100%; height: 100%;  background: #00386b;">
+			<div id="echar" style="width:100%; height:100%; "></div>
+
+		</div>
+	</body>
+	<script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/echarts/js/echarts.js"></script>
+	<script type="text/javascript" src="../../static/echarts/map/js/province/tianjin.js"></script>
+	<script type="text/javascript" src="../../static/echarts/map/js/province/sichuan.js"></script>
+	<!--<script type=""-->
+	<script>
+        var zdlvfs = [
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"阿坝藏族羌族自治州","departureFlight":56,"ticketNumber":879,"seatNumber":1690,"actualLoadRate":"52.01183432",ticketAmount:48560.5},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"巴中市","departureFlight":4,"ticketNumber":54,"seatNumber":66,"actualLoadRate":"81.81818182",ticketAmount:2646},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"成都市","departureFlight":63,"ticketNumber":635,"seatNumber":1848,"actualLoadRate":"34.36147186",ticketAmount:36741},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"甘孜藏族自治州","departureFlight":3,"ticketNumber":32,"seatNumber":114,"actualLoadRate":"28.07017544",ticketAmount:3074},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"广安市","departureFlight":8,"ticketNumber":69,"seatNumber":204,"actualLoadRate":"33.82352941",ticketAmount:1542},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"凉山彝族自治州","departureFlight":3,"ticketNumber":46,"seatNumber":84,"actualLoadRate":"54.76190476",ticketAmount:1975},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"南充市","departureFlight":3,"ticketNumber":15,"seatNumber":100,"actualLoadRate":"15",ticketAmount:2550},
+            {"beginStation":"阿坝藏族羌族自治州","endStation":"阿坝藏族羌族自治州","departureFlight":42,"ticketNumber":1024,"seatNumber":1428,"actualLoadRate":"71.70868347",ticketAmount:118642},
+            {"beginStation":"成都市","endStation":"阿坝藏族羌族自治州","departureFlight":340,"ticketNumber":6124,"seatNumber":11304,"actualLoadRate":"54.17551309",ticketAmount:514608},
+            {"beginStation":"成都市","endStation":"巴中市","departureFlight":200,"ticketNumber":6464,"seatNumber":8203,"actualLoadRate":"78.80043886",ticketAmount:851516.5},
+            {"beginStation":"成都市","endStation":"成都市","departureFlight":6166,"ticketNumber":121434,"seatNumber":194970,"actualLoadRate":"62.28342822",ticketAmount:2002162.8},
+            {"beginStation":"成都市","endStation":"达州市","departureFlight":88,"ticketNumber":2162,"seatNumber":3770,"actualLoadRate":"57.34748011",ticketAmount:205884},
+            {"beginStation":"成都市","endStation":"德阳市","departureFlight":1217,"ticketNumber":26946,"seatNumber":38262,"actualLoadRate":"70.42496472",ticketAmount:702444.6},
+            {"beginStation":"成都市","endStation":"甘孜藏族自治州","departureFlight":163,"ticketNumber":3879,"seatNumber":6388,"actualLoadRate":"60.72323106",ticketAmount:556899},
+            {"beginStation":"成都市","endStation":"广安市","departureFlight":93,"ticketNumber":1577,"seatNumber":3080,"actualLoadRate":"51.2012987",ticketAmount:125054},
+            {"beginStation":"成都市","endStation":"广元市","departureFlight":256,"ticketNumber":4229,"seatNumber":9182,"actualLoadRate":"46.05750381",ticketAmount:360349.5},
+            {"beginStation":"成都市","endStation":"乐山市","departureFlight":965,"ticketNumber":16226,"seatNumber":31057,"actualLoadRate":"52.2458705",ticketAmount:781794.6},
+            {"beginStation":"成都市","endStation":"凉山彝族自治州","departureFlight":261,"ticketNumber":10061,"seatNumber":11072,"actualLoadRate":"90.86885838",ticketAmount:1697594.4},
+            {"beginStation":"成都市","endStation":"峨眉山市","departureFlight":1666,"ticketNumber":26918,"seatNumber":50124,"actualLoadRate":"53.70281701",ticketAmount:807903},
+            {"beginStation":"成都市","endStation":"绵阳市","departureFlight":956,"ticketNumber":18285,"seatNumber":29682,"actualLoadRate":"61.60299171",ticketAmount:843841.7},
+            {"beginStation":"成都市","endStation":"南充市","departureFlight":463,"ticketNumber":8858,"seatNumber":16089,"actualLoadRate":"55.05624961",ticketAmount:730283.6},
+            {"beginStation":"成都市","endStation":"内江市","departureFlight":1177,"ticketNumber":13025,"seatNumber":29655,"actualLoadRate":"43.92176699",ticketAmount:717636.1},
+            {"beginStation":"成都市","endStation":"攀枝花市","departureFlight":29,"ticketNumber":835,"seatNumber":1184,"actualLoadRate":"70.52364865",ticketAmount:182299.5},
+            {"beginStation":"成都市","endStation":"遂宁市","departureFlight":500,"ticketNumber":7385,"seatNumber":15169,"actualLoadRate":"48.68481772",ticketAmount:362180.5},
+            {"beginStation":"成都市","endStation":"成都市","departureFlight":2081,"ticketNumber":19811,"seatNumber":67246,"actualLoadRate":"29.46048836",ticketAmount:982398.4},
+            {"beginStation":"成都市","endStation":"雅安市","departureFlight":691,"ticketNumber":17664,"seatNumber":24944,"actualLoadRate":"70.81462476",ticketAmount:974977},
+            {"beginStation":"成都市","endStation":"宜宾市","departureFlight":698,"ticketNumber":11335,"seatNumber":22646,"actualLoadRate":"50.05298949",ticketAmount:1112160.7},
+            {"beginStation":"成都市","endStation":"资阳市","departureFlight":2210,"ticketNumber":39207,"seatNumber":61472,"actualLoadRate":"63.78025768",ticketAmount:1357305.1},
+            {"beginStation":"成都市","endStation":"自贡市","departureFlight":617,"ticketNumber":10162,"seatNumber":17803,"actualLoadRate":"57.08026737",ticketAmount:686012.6},
+            {"beginStation":"成都市","endStation":"泸州市","departureFlight":450,"ticketNumber":5924,"seatNumber":13954,"actualLoadRate":"42.45377669",ticketAmount:560689},
+            {"beginStation":"达州市","endStation":"巴中市","departureFlight":17,"ticketNumber":73,"seatNumber":178,"actualLoadRate":"41.01123596",ticketAmount:5180},
+            {"beginStation":"达州市","endStation":"成都市","departureFlight":43,"ticketNumber":920,"seatNumber":1492,"actualLoadRate":"61.66219839",ticketAmount:96570},
+            {"beginStation":"达州市","endStation":"达州市","departureFlight":364,"ticketNumber":2136,"seatNumber":10015,"actualLoadRate":"21.32800799",ticketAmount:55537.5},
+            {"beginStation":"达州市","endStation":"德阳市","departureFlight":6,"ticketNumber":52,"seatNumber":120,"actualLoadRate":"43.33333333",ticketAmount:6580},
+            {"beginStation":"达州市","endStation":"甘孜藏族自治州","departureFlight":73,"ticketNumber":529,"seatNumber":2117,"actualLoadRate":"24.98819084",ticketAmount:9679},
+            {"beginStation":"达州市","endStation":"广安市","departureFlight":181,"ticketNumber":794,"seatNumber":5153,"actualLoadRate":"15.4084999",ticketAmount:19610},
+            {"beginStation":"达州市","endStation":"乐山市","departureFlight":3,"ticketNumber":4,"seatNumber":15,"actualLoadRate":"26.66666667",ticketAmount:640},
+            {"beginStation":"达州市","endStation":"绵阳市","departureFlight":10,"ticketNumber":96,"seatNumber":303,"actualLoadRate":"31.68316832",ticketAmount:12232},
+            {"beginStation":"达州市","endStation":"南充市","departureFlight":24,"ticketNumber":242,"seatNumber":717,"actualLoadRate":"33.75174338",ticketAmount:16610},
+            {"beginStation":"达州市","endStation":"内江市","departureFlight":8,"ticketNumber":24,"seatNumber":60,"actualLoadRate":"40",ticketAmount:2907},
+            {"beginStation":"达州市","endStation":"成都市","departureFlight":214,"ticketNumber":1676,"seatNumber":4948,"actualLoadRate":"33.87227162",ticketAmount:93817},
+            {"beginStation":"达州市","endStation":"雅安市","departureFlight":3,"ticketNumber":5,"seatNumber":15,"actualLoadRate":"33.33333333",ticketAmount:800},
+            {"beginStation":"达州市","endStation":"宜宾市","departureFlight":7,"ticketNumber":19,"seatNumber":70,"actualLoadRate":"27.14285714",ticketAmount:2296},
+            {"beginStation":"达州市","endStation":"资阳市","departureFlight":21,"ticketNumber":110,"seatNumber":481,"actualLoadRate":"22.86902287",ticketAmount:6522},
+            {"beginStation":"达州市","endStation":"自贡市","departureFlight":4,"ticketNumber":7,"seatNumber":40,"actualLoadRate":"17.5",ticketAmount:1015},
+            {"beginStation":"达州市","endStation":"泸州市","departureFlight":6,"ticketNumber":21,"seatNumber":60,"actualLoadRate":"35",ticketAmount:3129},
+            {"beginStation":"德阳市","endStation":"成都市","departureFlight":122,"ticketNumber":1853,"seatNumber":3559,"actualLoadRate":"52.06518685",ticketAmount:47951.5},
+            {"beginStation":"德阳市","endStation":"德阳市","departureFlight":789,"ticketNumber":7095,"seatNumber":23927,"actualLoadRate":"29.65269361",ticketAmount:45248},
+            {"beginStation":"德阳市","endStation":"绵阳市","departureFlight":75,"ticketNumber":590,"seatNumber":2036,"actualLoadRate":"28.978389",ticketAmount:13080.5},
+            {"beginStation":"德阳市","endStation":"内江市","departureFlight":5,"ticketNumber":33,"seatNumber":75,"actualLoadRate":"44",ticketAmount:2489.5},
+            {"beginStation":"德阳市","endStation":"遂宁市","departureFlight":17,"ticketNumber":153,"seatNumber":411,"actualLoadRate":"37.22627737",ticketAmount:6075.5},
+            {"beginStation":"德阳市","endStation":"成都市","departureFlight":9,"ticketNumber":66,"seatNumber":243,"actualLoadRate":"27.16049383",ticketAmount:762},
+            {"beginStation":"德阳市","endStation":"资阳市","departureFlight":18,"ticketNumber":184,"seatNumber":516,"actualLoadRate":"35.65891473",ticketAmount:7075},
+            {"beginStation":"乐山市","endStation":"成都市","departureFlight":560,"ticketNumber":3336,"seatNumber":14900,"actualLoadRate":"22.38926174",ticketAmount:127936},
+            {"beginStation":"乐山市","endStation":"乐山市","departureFlight":1290,"ticketNumber":3279,"seatNumber":35113,"actualLoadRate":"9.338421667",ticketAmount:27917.5},
+            {"beginStation":"乐山市","endStation":"峨眉山市","departureFlight":115,"ticketNumber":337,"seatNumber":3130,"actualLoadRate":"10.76677316",ticketAmount:3914},
+            {"beginStation":"乐山市","endStation":"绵阳市","departureFlight":12,"ticketNumber":10,"seatNumber":72,"actualLoadRate":"13.88888889",ticketAmount:772},
+            {"beginStation":"乐山市","endStation":"内江市","departureFlight":4,"ticketNumber":4,"seatNumber":20,"actualLoadRate":"20",ticketAmount:212},
+            {"beginStation":"乐山市","endStation":"成都市","departureFlight":6,"ticketNumber":70,"seatNumber":186,"actualLoadRate":"37.6344086",ticketAmount:8280},
+            {"beginStation":"乐山市","endStation":"自贡市","departureFlight":90,"ticketNumber":158,"seatNumber":1930,"actualLoadRate":"8.186528497",ticketAmount:2520},
+            {"beginStation":"凉山彝族自治州","endStation":"巴中市","departureFlight":12,"ticketNumber":46,"seatNumber":324,"actualLoadRate":"14.19753086",ticketAmount:2430},
+            {"beginStation":"凉山彝族自治州","endStation":"成都市","departureFlight":107,"ticketNumber":2935,"seatNumber":5026,"actualLoadRate":"58.39633904",ticketAmount:562944},
+            {"beginStation":"凉山彝族自治州","endStation":"德阳市","departureFlight":6,"ticketNumber":78,"seatNumber":222,"actualLoadRate":"35.13513514",ticketAmount:12870},
+            {"beginStation":"凉山彝族自治州","endStation":"甘孜藏族自治州","departureFlight":35,"ticketNumber":406,"seatNumber":1303,"actualLoadRate":"31.15886416",ticketAmount:32085},
+            {"beginStation":"凉山彝族自治州","endStation":"乐山市","departureFlight":12,"ticketNumber":234,"seatNumber":444,"actualLoadRate":"52.7027027",ticketAmount:38060.5},
+            {"beginStation":"凉山彝族自治州","endStation":"凉山彝族自治州","departureFlight":116,"ticketNumber":1398,"seatNumber":3496,"actualLoadRate":"39.98855835",ticketAmount:63714},
+            {"beginStation":"凉山彝族自治州","endStation":"峨眉山市","departureFlight":12,"ticketNumber":243,"seatNumber":450,"actualLoadRate":"54",ticketAmount:37268},
+            {"beginStation":"凉山彝族自治州","endStation":"南充市","departureFlight":12,"ticketNumber":78,"seatNumber":324,"actualLoadRate":"24.07407407",ticketAmount:17706},
+            {"beginStation":"凉山彝族自治州","endStation":"内江市","departureFlight":5,"ticketNumber":97,"seatNumber":185,"actualLoadRate":"52.43243243",ticketAmount:18624},
+            {"beginStation":"凉山彝族自治州","endStation":"攀枝花市","departureFlight":130,"ticketNumber":3262,"seatNumber":4525,"actualLoadRate":"72.08839779",ticketAmount:208253},
+            {"beginStation":"凉山彝族自治州","endStation":"遂宁市","departureFlight":6,"ticketNumber":48,"seatNumber":222,"actualLoadRate":"21.62162162",ticketAmount:9936},
+            {"beginStation":"凉山彝族自治州","endStation":"成都市","departureFlight":24,"ticketNumber":370,"seatNumber":1089,"actualLoadRate":"33.97612489",ticketAmount:75465},
+            {"beginStation":"凉山彝族自治州","endStation":"雅安市","departureFlight":58,"ticketNumber":1018,"seatNumber":1936,"actualLoadRate":"52.58264463",ticketAmount:90710},
+            {"beginStation":"凉山彝族自治州","endStation":"宜宾市","departureFlight":6,"ticketNumber":152,"seatNumber":222,"actualLoadRate":"68.46846847",ticketAmount:30351},
+            {"beginStation":"凉山彝族自治州","endStation":"资阳市","departureFlight":3,"ticketNumber":38,"seatNumber":102,"actualLoadRate":"37.25490196",ticketAmount:8252},
+            {"beginStation":"凉山彝族自治州","endStation":"自贡市","departureFlight":6,"ticketNumber":93,"seatNumber":222,"actualLoadRate":"41.89189189",ticketAmount:20739},
+            {"beginStation":"凉山彝族自治州","endStation":"泸州市","departureFlight":6,"ticketNumber":192,"seatNumber":282,"actualLoadRate":"68.08510638",ticketAmount:41529},
+            {"beginStation":"南充市","endStation":"成都市","departureFlight":21,"ticketNumber":110,"seatNumber":581,"actualLoadRate":"18.93287435",ticketAmount:2411.5},
+            {"beginStation":"南充市","endStation":"达州市","departureFlight":48,"ticketNumber":724,"seatNumber":1634,"actualLoadRate":"44.30844553",ticketAmount:36784},
+            {"beginStation":"南充市","endStation":"德阳市","departureFlight":7,"ticketNumber":70,"seatNumber":119,"actualLoadRate":"58.82352941",ticketAmount:700},
+            {"beginStation":"南充市","endStation":"广安市","departureFlight":237,"ticketNumber":2747,"seatNumber":7126,"actualLoadRate":"38.54897558",ticketAmount:84542.5},
+            {"beginStation":"南充市","endStation":"广元市","departureFlight":43,"ticketNumber":741,"seatNumber":1208,"actualLoadRate":"61.3410596",ticketAmount:38051.5},
+            {"beginStation":"南充市","endStation":"乐山市","departureFlight":6,"ticketNumber":15,"seatNumber":83,"actualLoadRate":"18.07228916",ticketAmount:1868},
+            {"beginStation":"南充市","endStation":"凉山彝族自治州","departureFlight":24,"ticketNumber":292,"seatNumber":823,"actualLoadRate":"35.4799514",ticketAmount:7568},
+            {"beginStation":"南充市","endStation":"绵阳市","departureFlight":58,"ticketNumber":433,"seatNumber":1593,"actualLoadRate":"27.18141871",ticketAmount:18395.5},
+            {"beginStation":"南充市","endStation":"南充市","departureFlight":624,"ticketNumber":3938,"seatNumber":12159,"actualLoadRate":"32.38753187",ticketAmount:51964},
+            {"beginStation":"南充市","endStation":"成都市","departureFlight":1362,"ticketNumber":28287,"seatNumber":12555,"actualLoadRate":"225.3046595",ticketAmount:616370},
+            {"beginStation":"南充市","endStation":"宜宾市","departureFlight":3,"ticketNumber":31,"seatNumber":69,"actualLoadRate":"44.92753623",ticketAmount:4203},
+            {"beginStation":"南充市","endStation":"资阳市","departureFlight":7,"ticketNumber":70,"seatNumber":189,"actualLoadRate":"37.03703704",ticketAmount:740},
+            {"beginStation":"内江市","endStation":"成都市","departureFlight":315,"ticketNumber":4286,"seatNumber":7928,"actualLoadRate":"54.06155399",ticketAmount:275983},
+            {"beginStation":"内江市","endStation":"达州市","departureFlight":6,"ticketNumber":57,"seatNumber":159,"actualLoadRate":"35.8490566",ticketAmount:7943},
+            {"beginStation":"内江市","endStation":"德阳市","departureFlight":19,"ticketNumber":109,"seatNumber":406,"actualLoadRate":"26.84729064",ticketAmount:8520},
+            {"beginStation":"内江市","endStation":"乐山市","departureFlight":21,"ticketNumber":107,"seatNumber":583,"actualLoadRate":"18.35334477",ticketAmount:5099},
+            {"beginStation":"内江市","endStation":"凉山彝族自治州","departureFlight":6,"ticketNumber":122,"seatNumber":222,"actualLoadRate":"54.95495495",ticketAmount:24300},
+            {"beginStation":"内江市","endStation":"峨眉山市","departureFlight":18,"ticketNumber":189,"seatNumber":529,"actualLoadRate":"35.72778828",ticketAmount:8230.5},
+            {"beginStation":"内江市","endStation":"绵阳市","departureFlight":18,"ticketNumber":141,"seatNumber":516,"actualLoadRate":"27.3255814",ticketAmount:12867},
+            {"beginStation":"内江市","endStation":"南充市","departureFlight":6,"ticketNumber":85,"seatNumber":174,"actualLoadRate":"48.85057471",ticketAmount:7682},
+            {"beginStation":"内江市","endStation":"内江市","departureFlight":1827,"ticketNumber":7910,"seatNumber":51070,"actualLoadRate":"15.48854513",ticketAmount:101263.5},
+            {"beginStation":"内江市","endStation":"攀枝花市","departureFlight":6,"ticketNumber":88,"seatNumber":222,"actualLoadRate":"39.63963964",ticketAmount:20416},
+            {"beginStation":"内江市","endStation":"遂宁市","departureFlight":6,"ticketNumber":36,"seatNumber":168,"actualLoadRate":"21.42857143",ticketAmount:2304},
+            {"beginStation":"内江市","endStation":"成都市","departureFlight":100,"ticketNumber":864,"seatNumber":2445,"actualLoadRate":"35.33742331",ticketAmount:63199},
+            {"beginStation":"内江市","endStation":"雅安市","departureFlight":69,"ticketNumber":241,"seatNumber":1834,"actualLoadRate":"13.14067612",ticketAmount:15683},
+            {"beginStation":"内江市","endStation":"宜宾市","departureFlight":108,"ticketNumber":1736,"seatNumber":3326,"actualLoadRate":"52.19482862",ticketAmount:67835},
+            {"beginStation":"内江市","endStation":"资阳市","departureFlight":137,"ticketNumber":925,"seatNumber":1955,"actualLoadRate":"47.31457801",ticketAmount:36967},
+            {"beginStation":"内江市","endStation":"自贡市","departureFlight":160,"ticketNumber":889,"seatNumber":4355,"actualLoadRate":"20.41331803",ticketAmount:8348.5},
+            {"beginStation":"内江市","endStation":"泸州市","departureFlight":100,"ticketNumber":1549,"seatNumber":2762,"actualLoadRate":"56.08254888",ticketAmount:63416},
+            {"beginStation":"攀枝花市","endStation":"巴中市","departureFlight":3,"ticketNumber":20,"seatNumber":120,"actualLoadRate":"16.66666667",ticketAmount:5672},
+            {"beginStation":"攀枝花市","endStation":"成都市","departureFlight":11,"ticketNumber":206,"seatNumber":515,"actualLoadRate":"40",ticketAmount:55075},
+            {"beginStation":"攀枝花市","endStation":"广安市","departureFlight":7,"ticketNumber":27,"seatNumber":278,"actualLoadRate":"9.712230216",ticketAmount:7901},
+            {"beginStation":"攀枝花市","endStation":"乐山市","departureFlight":5,"ticketNumber":37,"seatNumber":180,"actualLoadRate":"20.55555556",ticketAmount:7848},
+            {"beginStation":"攀枝花市","endStation":"凉山彝族自治州","departureFlight":312,"ticketNumber":3055,"seatNumber":10449,"actualLoadRate":"29.23724758",ticketAmount:176188},
+            {"beginStation":"攀枝花市","endStation":"峨眉山市","departureFlight":6,"ticketNumber":32,"seatNumber":232,"actualLoadRate":"13.79310345",ticketAmount:6460},
+            {"beginStation":"攀枝花市","endStation":"绵阳市","departureFlight":3,"ticketNumber":6,"seatNumber":121,"actualLoadRate":"4.958677686",ticketAmount:1396},
+            {"beginStation":"攀枝花市","endStation":"南充市","departureFlight":7,"ticketNumber":55,"seatNumber":239,"actualLoadRate":"23.0125523",ticketAmount:9843},
+            {"beginStation":"攀枝花市","endStation":"内江市","departureFlight":6,"ticketNumber":44,"seatNumber":222,"actualLoadRate":"19.81981982",ticketAmount:10648},
+            {"beginStation":"攀枝花市","endStation":"攀枝花市","departureFlight":323,"ticketNumber":569,"seatNumber":7288,"actualLoadRate":"7.807354555",ticketAmount:15609},
+            {"beginStation":"攀枝花市","endStation":"遂宁市","departureFlight":2,"ticketNumber":30,"seatNumber":74,"actualLoadRate":"40.54054054",ticketAmount:1443},
+            {"beginStation":"攀枝花市","endStation":"成都市","departureFlight":275,"ticketNumber":2658,"seatNumber":7068,"actualLoadRate":"37.60611205",ticketAmount:228270},
+            {"beginStation":"攀枝花市","endStation":"雅安市","departureFlight":4,"ticketNumber":69,"seatNumber":188,"actualLoadRate":"36.70212766",ticketAmount:12781},
+            {"beginStation":"攀枝花市","endStation":"宜宾市","departureFlight":4,"ticketNumber":35,"seatNumber":144,"actualLoadRate":"24.30555556",ticketAmount:7471},
+            {"beginStation":"攀枝花市","endStation":"资阳市","departureFlight":6,"ticketNumber":71,"seatNumber":195,"actualLoadRate":"36.41025641",ticketAmount:17573},
+            {"beginStation":"攀枝花市","endStation":"自贡市","departureFlight":6,"ticketNumber":61,"seatNumber":195,"actualLoadRate":"31.28205128",ticketAmount:13768},
+            {"beginStation":"攀枝花市","endStation":"泸州市","departureFlight":6,"ticketNumber":95,"seatNumber":297,"actualLoadRate":"31.98653199",ticketAmount:28120},
+            {"beginStation":"雅安市","endStation":"成都市","departureFlight":318,"ticketNumber":5890,"seatNumber":10452,"actualLoadRate":"56.35285113",ticketAmount:261641},
+            {"beginStation":"雅安市","endStation":"甘孜藏族自治州","departureFlight":9,"ticketNumber":151,"seatNumber":333,"actualLoadRate":"45.34534535",ticketAmount:9110},
+            {"beginStation":"雅安市","endStation":"乐山市","departureFlight":6,"ticketNumber":43,"seatNumber":174,"actualLoadRate":"24.71264368",ticketAmount:1955},
+            {"beginStation":"雅安市","endStation":"绵阳市","departureFlight":12,"ticketNumber":123,"seatNumber":396,"actualLoadRate":"31.06060606",ticketAmount:11439},
+            {"beginStation":"雅安市","endStation":"南充市","departureFlight":6,"ticketNumber":117,"seatNumber":261,"actualLoadRate":"44.82758621",ticketAmount:13688},
+            {"beginStation":"雅安市","endStation":"雅安市","departureFlight":589,"ticketNumber":4001,"seatNumber":15068,"actualLoadRate":"26.55295992",ticketAmount:75549}
+
+        ];
+        var tianjin = "四川省.json";
+
+        // $(function() {
+        var myChart = echarts.init(document.getElementById('echar'));
+        $.get(tianjin, function(tjJson) {
+
+            echarts.registerMap('tianjin', tjJson);
+            myChart.setOption({
+                series: [{
+                    type: 'map',
+                    map: '四川'
+                }]
+            });
+
+            var geoCoordMap = new Map();
+            for (var i = 0; i < tjJson.features.length; i++) {
+                geoCoordMap[tjJson.features[i].properties.name] = tjJson.features[i].properties.cp;
+            }
+            // var geoCoordMap = {
+            //     '德阳市': [104.398651,31.127991],
+            //     '遂宁市': [104.398651,31.127991],
+            //     '巴中市': [106.753669,31.858809],
+            //     '甘孜藏族自治州': [101.963815,30.050663]
+            // };
+
+			//出发的
+            var typedData = zdlvfs.reduce(function(acc, cur) {
+                var foundBeginTypedData = acc.find(function(item) {
+                    return item.name === cur["beginStation"]
+                });
+                if(foundBeginTypedData) {
+                    foundBeginTypedData.value += cur["ticketNumber"];
+                    return acc;
+                } else {
+                    acc.push({
+                        name: cur["beginStation"],
+                        value: cur["ticketNumber"]
+                    });
+                    return acc;
+                }
+            }, []);
+            var maxValue = typedData.reduce(function(max, cur) {
+                return cur.value > max ? cur.value : max;
+            }, -Infinity);
+            var ceiledMaxValue = Math.ceil(maxValue / 500) * 500;
+
+            var sale = {
+                lv0: ceiledMaxValue,
+                lv1: ~~(ceiledMaxValue / 10),
+                lv2: ~~(ceiledMaxValue / 70),
+                lv3: ~~(ceiledMaxValue / 300)
+            }
+            console.log(typedData)
+
+            var color = '';
+            var typedDataMap = new Map();
+            typedData.forEach(function (item) {
+                if (item['value'] > sale.lv3 && item['value'] < sale.lv2 ) {
+                    color = 20;
+                } else if (item['value'] > sale.lv2 && item['value'] < sale.lv1) {
+                    color = 60;
+                } else if (item['value'] > sale.lv1) {
+                    color = 101;
+                }
+                typedDataMap.set(item['name'], color);
+			});
+
+			//返程
+            var typedData1 = zdlvfs.reduce(function(acc, cur) {
+                var foundEndTypedData = acc.find(function(item) {
+                    return item.name === cur["endStation"]
+                });
+                if(foundEndTypedData) {
+                    foundEndTypedData.value += cur["ticketNumber"];
+                    return acc;
+                } else {
+                    acc.push({
+                        name: cur["endStation"],
+                        value: cur["ticketNumber"]
+                    });
+                    return acc;
+                }
+            }, []);
+            console.log(typedData1)
+
+            var goData = [];
+            for (var i = 0; i < zdlvfs.length; i++) {
+				goData.push([{
+                    name: zdlvfs[i]['beginStation']
+                },{
+				    id: 1,
+                    name: zdlvfs[i]['endStation'],
+                    value: typedDataMap.get(zdlvfs[i]['beginStation'])
+                }]);
+            }
+
+            var goData2 = [
+                [{
+                    name: '德阳市'
+                }, {
+                    id: 1,
+                    name: '巴中市',
+                    value: 75
+                }],
+                [{
+                    name: '巴中市'
+                }, {
+                    id: 2,
+                    name: '德阳市',
+                    value: 75
+                }],
+                [{
+                    name: '德阳市'
+                }, {
+                    id: 1,
+                    name: '甘孜藏族自治州',
+                    value: 35
+                }],
+
+                //  [{name:'德阳市'}, {name:'巴中市',value:95}],
+            ];
+//值控制圆点大小
+            var backData2 = [
+                [{
+                    name: '巴中市'
+                }, {
+                    id: 2,
+                    name: '德阳市',
+                    value: 75
+                }],
+                [{
+                    name: '甘孜藏族自治州'
+                }, {
+                    id: 2,
+                    name: '德阳市',
+                    value: 95
+                }]
+            ];
+            var color1 = '';
+            var backData = [];
+            for (var i = 0; i < zdlvfs.length; i++) {
+                if(!typedDataMap.get(zdlvfs[i]['beginStation'])) {
+                    color1 = 20;
+                } else {
+                    color1 = typedDataMap.get(zdlvfs[i]['beginStation']);
+                }
+                backData.push([{
+                    name: zdlvfs[i]['endStation']
+                },{
+                    id: 2,
+                    name: zdlvfs[i]['beginStation'],
+                    value: color1
+                }]);
+            }
+
+            var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+            var arcAngle = function(data) {
+                var j, k;
+                for (var i = 0; i < data.length; i++) {
+                    var dataItem = data[i];
+                    if (dataItem[1].id == 1) {
+                        j = 0.2;
+                        return j;
+                    } else if (dataItem[1].id == 2) {
+                        k = -0.2;
+                        return k;
+                    }
+                }
+            }
+
+            var convertData = function(data) {
+                var res = [];
+                for (var i = 0; i < data.length; i++) {
+                    var dataItem = data[i];
+                    var fromCoord = geoCoordMap[dataItem[0].name];
+                    var toCoord = geoCoordMap[dataItem[1].name];
+                    if (dataItem[1].id == 1) {
+                        if (fromCoord && toCoord) {
+                            res.push([{
+                                coord: fromCoord,
+                            }, {
+                                coord: toCoord,
+                               /* value: dataItem[1].value //线条颜色*/
+                            }]);
+                        }
+                    } else if (dataItem[1].id == 2) {
+                        if (fromCoord && toCoord) {
+                            res.push([{
+                                coord: fromCoord,
+                            }, {
+                                coord: toCoord,
+                                value: dataItem[1].value //线条颜色
+                            }]);
+                        }
+                    }
+                }
+                return res;
+            };
+
+            var color = ['#fff', '#FF1493', '#0000FF'];
+            var series = [];
+            [
+                /*['1', goData],*/
+                ['2', backData]
+            ].forEach(function(item, i) {
+                series.push({
+                    name: item[0],
+                    type: 'lines',
+                    zlevel: 2,
+                    //线特效配置
+                    effect: {
+                        show: true,
+                        period: 6,
+                        trailLength: 0.1,
+                        symbol: planePath, //标记类型
+                        symbolSize: 10
+                    },
+                    lineStyle: {
+                        normal: {
+                            width: 1,
+                            opacity: 0.4,
+                            curveness: arcAngle(item[1]), //弧线角度
+                            color: '#fff'
+                        }
+                    },
+                    data: convertData(item[1])
+                }, {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    zlevel: 2,
+                    //波纹效果
+                    rippleEffect: {
+                        period: 2,
+                        brushType: 'stroke',
+                        scale: 3
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            color: '#fff',
+                            position: 'right',
+                            formatter: '{b}'
+                        }
+                    },
+                    //终点形象
+                    symbol: 'circle',
+                    //圆点大小
+                    symbolSize: function(val) {
+                        return val[2] / 8;
+                    },
+                    itemStyle: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    data: item[1].map(function(dataItem) {
+                        return {
+                            name: dataItem[1].name,
+                            value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                        };
+                    })
+
+                });
+
+            });
+
+            var option = {
+                backgroundColor: '#404a59',
+                title: {
+                    text: '天津迁徙',
+                    subtext: '数据可更换，去掉头尾注释可直接应用到本地',
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{b}"
+                },
+                //线颜色及飞行轨道颜色
+                visualMap: {
+                    show: false,
+                    min: 30,
+                    max: 80,
+                    color: [ '#f8442c', '#fb8b08', '#169cf3', '#ffffff']
+                    // color: [ '#ffffff','#169cf3',  '#fb8b08']
+                    /*inRange: {
+                        color: ['#ffffff', '#169cf3', '#fb8b08', '#f8442c'],
+                        symbolSize: [2, 10]
+                    }*/
+                },
+                //地图相关设置
+                geo: {
+                    map: 'tianjin',
+                    //视角缩放比例
+                    zoom: 1,
+                    //显示文本样式
+                    label: {
+                        normal: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        },
+                        emphasis: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    //鼠标缩放和平移
+                    roam: true,
+                    itemStyle: {
+                        normal: {
+                            //          	color: '#ddd',
+                            borderColor: 'rgba(147, 235, 248, 1)',
+                            borderWidth: 1,
+                            areaColor: {
+                                type: 'radial',
+                                x: 0.5,
+                                y: 0.5,
+                                r: 0.8,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(175,238,238, 0)' // 0% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(47,79,79, 0.2)' // 100% 处的颜色
+                                }],
+                                globalCoord: false // 缺省为 false
+                            },
+                            shadowColor: 'rgba(128, 217, 248, 1)',
+                            // shadowColor: 'rgba(255, 255, 255, 1)',
+                            shadowOffsetX: -2,
+                            shadowOffsetY: 2,
+                            shadowBlur: 10
+                        },
+                        emphasis: {
+                            areaColor: '#389BB7',
+                            borderWidth: 0
+                        }
+                    }
+                },
+                series: series
+            };
+            myChart.setOption(option);
+        })
+        // })
+	</script>
+
+</html>

@@ -1,0 +1,1062 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* utils */
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.hide{
+    display: none;
+}
+.clearfix{
+    display: block;
+    zoom: 1;
+}
+.clearfix:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.yahei{
+    font-family: "Microsoft YaHei", "å¾®è½¯é›…é»‘";
+}
+.xihei{
+    font-family: "STHeiti Light", "åŽæ–‡ç»†é»‘";
+}
+
+
+
+
+div.datepicker {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 196px;
+  height: 147px;
+  position: absolute;
+  cursor: default;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.datepickerContainer {
+  position: absolute;
+}
+
+/* Hide border divs by default */
+.datepickerBorderT,
+.datepickerBorderB,
+.datepickerBorderL,
+.datepickerBorderR,
+.datepickerBorderTL,
+.datepickerBorderTR,
+.datepickerBorderBL,
+.datepickerBorderBR {
+  display:none;
+}
+
+.datepickerHidden {
+  display: none;
+}
+div.datepicker table {
+  border-collapse:collapse;
+}
+div.datepicker a {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+  outline: none;
+}
+div.datepicker table td {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+div.datepicker th {
+  text-align: center;
+  color: #666666;
+  font-weight: normal;
+  padding:0;
+}
+div.datepicker tbody a {
+  display: block;
+}
+.datepickerDays a {
+  width: 20px;
+  line-height: 16px;
+  height: 16px;
+  padding-right: 2px;
+}
+.datepickerYears a,
+.datepickerMonths a{
+  width: 39px;
+  line-height: 36px;
+  height: 36px;
+  text-align: center;
+}
+.datepickerMonths td:first-child a,
+.datepickerMonths td:last-child a,
+.datepickerYears td:first-child a,
+.datepickerYears td:last-child a {
+  width:38px;
+}
+td.datepickerNotInMonth a {
+  color: #666666;
+}
+tbody.datepickerDays td.datepickerSelected{
+  background: #136A9F;
+}
+tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
+  background: #17384d;
+}
+tbody.datepickerYears td.datepickerSelected,
+tbody.datepickerMonths td.datepickerSelected{
+  background: #17384d;
+}
+div.datepicker td.datepickerSelected a {
+  color:white;
+}
+div.datepicker a:hover,
+div.datepicker a:hover {
+  color: #88c5eb;
+}
+div.datepicker td.datepickerNotInMonth a:hover {
+  color: #999999;
+}
+.datepickerSpace div {
+  width: 20px;
+}
+.datepickerBlock {
+  vertical-align:top;
+}
+a.datepickerGoNext,
+a.datepickerGoPrev,
+a.datepickerMonth {
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  float:left;
+}
+div.datepicker th a.datepickerGoNext,
+div.datepicker th a.datepickerGoPrev {
+  width: 20px;
+  color: #666666;
+  display:none;
+}
+div.datepicker th a.datepickerMonth {
+  width:114px;
+  display:block;
+}
+/* Only display the previous/next arrows on the first/last calendars */
+div.datepicker .datepickerFirstView th a.datepickerGoPrev,
+div.datepicker .datepickerLastView th a.datepickerGoNext {
+  display:block;
+}
+/* Compensate for the space lost by not having a previous arrow */
+div.datepicker th a.datepickerMonth {
+  margin-left:20px;
+}
+div.datepicker .datepickerFirstView th a.datepickerMonth {
+  margin-left:0;
+}
+/* Day mode calendar body */
+table.datepickerViewDays tbody.datepickerMonths,
+table.datepickerViewDays tbody.datepickerYears {
+  display: none;
+}
+/* Month mode calendar body */
+table.datepickerViewMonths tbody.datepickerDays,
+table.datepickerViewMonths tbody.datepickerYears,
+table.datepickerViewMonths tr.datepickerDoW {
+  display: none;
+}
+/* Year mode calendar body */
+table.datepickerViewYears tbody.datepickerDays,
+table.datepickerViewYears tbody.datepickerMonths,
+table.datepickerViewYears tr.datepickerDoW {
+  display: none;
+}
+td.datepickerDisabled a,
+td.datepickerDisabled.datepickerNotInMonth a{
+  color: #555555;
+}
+td.datepickerDisabled a:hover {
+  color: #333333;
+}
+/* Not used by default, calendar cells can be marked as special if desired (doesn't seem to be totally working) */
+div.datepicker tbody.datepickerDays td.datepickerSpecial a {
+  background: #770000;
+  color:white;
+}
+div.datepicker tbody.datepickerDays td.datepickerSpecial.datepickerSelected a {
+  background: #aa0000;
+}
+
+/* style the 'not in month' day cell away */
+tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
+  background-color:transparent;
+}
+div.datepicker td.datepickerNotInMonth a span {
+  display:none;
+}
+div.datepicker td.datepickerNotInMonth a:hover span {
+  display:none;
+}
+div.datepicker tbody.datepickerDays td.datepickerNotInMonth:hover {
+  background-color: transparent;
+}
+.datepickerContainer {
+  background-color: #121212;
+  top: 10px;
+  left: 10px;
+}
+.datepickerBorderT {
+  display:block;
+  position: absolute;
+  left: 10px;
+  top: 0;
+  right: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_t.png);
+}
+.datepickerBorderB {
+  display:block;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  right: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_b.png);
+}
+.datepickerBorderL {
+  display:block;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  top: 10px;
+  width: 10px;
+  background: url(../image/datepicker/datepicker_l.png);
+}
+.datepickerBorderR {
+  display:block;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  top: 10px;
+  width: 10px;
+  background: url(../image/datepicker/datepicker_r.png);
+}
+.datepickerBorderTL {
+  display:block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_tl.png);
+}
+.datepickerBorderTR {
+  display:block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_tr.png);
+}
+.datepickerBorderBL {
+  display:block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_bl.png);
+}
+.datepickerBorderBR {
+  display:block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: url(../image/datepicker/datepicker_br.png);
+}
+div.datepicker a {
+  color: #eeeeee;
+}
+div.datepicker th {
+  color: #999999;
+}
+td.datepickerNotInMonth a {
+  color: #666666;
+}
+td.datepickerDisabled a,
+td.datepickerDisabled.datepickerNotInMonth a{
+  color: #333333;
+}
+
+.autocomplete-suggestions { 
+    background: rgba(255,255,255, 0.1);
+    cursor: default; 
+    overflow: auto;
+    color: #EEE;
+}
+.autocomplete-suggestion { 
+    padding: 2px 5px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    border-bottom: 1px solid rgba(255,255,255, 0.1);
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    padding-left: 20px;
+}
+.autocomplete-suggestions strong { 
+    font-weight: bold; 
+    color: #FFF; 
+}
+
+.autocomplete-no-suggestion { 
+    padding: 2px 5px;
+}
+.autocomplete-selected { 
+    background: rgba(255,255,255, 0.5);
+}
+
+.autocomplete-group { 
+    padding: 2px 5px; 
+}
+.autocomplete-group strong { 
+    font-weight: bold; 
+    font-size: 12px; 
+    color: #FFF; 
+    display: block; 
+    border-bottom: 1px solid #FFF; 
+}
+.loading-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 23px;
+    height: 23px;
+    margin: -12px 0 0 -12px;
+    background: url(../image/loading.png);
+    background-position: 0 0;
+    background-size: 122px;
+    opacity: 0.6;
+    z-index: 1000;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-animation: anim-eleCircle 2s linear infinite;
+    animation: anim-eleCircle 2s linear infinite;
+}
+@-webkit-keyframes anim-eleCircle {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    20% {
+        -webkit-transform: rotate(72deg);
+    }
+    40% {
+        -webkit-transform: rotate(144deg);
+    }
+    60% {
+        -webkit-transform: rotate(216deg);
+    }
+    80% {
+        -webkit-transform: rotate(288deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes anim-eleCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(72deg);
+    }
+    40% {
+        transform: rotate(144deg);
+    }
+    60% {
+        transform: rotate(216deg);
+    }
+    80% {
+        transform: rotate(288deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../image/icon.png) no-repeat; 
+    vertical-align: middle;
+    background-size: 165px;
+}
+
+.icon-star{
+    background-position: -66px 0;
+}
+.active .icon-star{
+    background-position: -0px 0;
+}
+
+.icon-train{
+    background-position: -82px 0;
+}
+.active .icon-train{
+    background-position: -16px 0;
+}
+
+.icon-plane{
+    background-position: -116px 0;
+}
+.active .icon-plane{
+    background-position: -50px 0;
+}
+
+.icon-car{
+    background-position: -99px 0;
+}
+.active .icon-car{
+    background-position: -33px 0;
+}
+.ui-input {
+    height: 26px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 12px;
+    color: white;
+    border: 1px solid rgba(255,255,255, 0.2);
+    border-radius: 4px;
+    padding-left: 6px;
+    background: rgba(255,255,255, 0);
+    box-sizing: border-box;
+    width: 100%;
+}
+.ui-input:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,255, 0.5);
+}
+
+.ui-input-date{
+    background: rgba(255,255,255, 0) url(../image/date.png) no-repeat 95% center;
+    background-size: 16px;
+}
+.ui-input-loc{
+    background: rgba(255,255,255, 0) url(../image/loc.png) no-repeat 95% center; 
+    background-size: 16px;
+    letter-spacing: 2px;
+}
+.ui-input::-webkit-input-placeholder{ 
+    color:rgba(255,255,255,0.4);
+}
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+    font: 14px/1.8 arial,helvetica,sans-serif;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+    /*height:100%;*/
+    /*min-height: 1000px;*/
+    background-color: #072c70;
+    position: relative;
+    overflow: auto;
+}
+
+/* parallax bg */
+.bg,
+.bg .layer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.bg .parallax{
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    left: -25%;
+    top: -25%;
+    overflow: hidden;
+}
+.bg .layer{
+    background: #06286B url(../image/back.jpg) no-repeat; 
+    background-size: 100% auto;
+}
+
+/* layout */
+.header{}
+.container{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.footer{
+    position: relative;
+    display: none;
+}
+.showfooter{
+    display: block;
+}
+.full {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.panel_footer{top:auto;height:55px;background-color:#0079ff;color:#fff}
+.panel_footer a{color:#fff}
+.panel_footer .fotter_head{left:14px;width:50px;background-image:url(../image/logoF.png);background-repeat:no-repeat;background-size:40px 40px;background-position:8px 8px}
+.panel_footer .fotter_body{left:65px;right:80px}
+.panel_footer .foot_body_main{bottom:auto;height:30px;line-height:35px;text-indent:5px;font-size:1.1em}
+.panel_footer .foot_body_tip{top:auto;height:25px;line-height:20px;text-indent:5px;font-size:12px}
+.panel_footer .fotter_foot{left:auto;width:80px;right: 15px;}
+.fotter_foot .center_button{
+    position: absolute;
+    font-size: 13px;
+    margin: 15px 0 0 5px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    width: 65px;
+    height: 25px;
+    text-align: center
+}
+
+/* top wrap */
+.logo{
+    display: inline-block;
+    text-indent: -9999em;
+    width: 85px;
+    height: 18.5px;
+    margin-bottom: 2px;
+    background: url(../image/logo.png) no-repeat center center;
+    background-size: 100%;
+}
+.title{
+    text-indent: -9999em;
+    width: 286.5px;
+    height: 66.5px;
+    display: none;
+    margin: 0 auto;
+    /*background: url(../image/output.png) no-repeat center center;*/
+    background-size: 100%;
+}
+
+/* transport */
+.transport{
+    position: relative;
+    width: 100%;
+    margin: 10px 0 16px;
+    margin-top: 40px;
+    padding-bottom:6px;
+    border-bottom: 1px solid rgba(255,255,255,0.2)
+}
+.transport a{
+    position: relative;
+    display: inline-block;
+    width: 25%;
+    height: 14px;
+    line-height: 14px;
+    font-size: 14px;
+    overflow: visible;
+    float: left;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+    cursor:pointer;
+}
+.transport .horizontal-bar{
+    position: absolute;
+    width: 25%;
+    height: 1px;
+    background-color: #FFF;
+    border-radius: 1px;
+    left: 0;
+    top: 20px;
+    transition:all 1s;
+    -moz-transition:all 1s; /* Firefox 4 */
+    -webkit-transition:all 1s; /* Safari and Chrome */
+    -o-transition:all 1s; /* Opera */
+}
+.transport a.last{
+    border-right: none;
+}
+
+.transport a .icon{
+    position: relative;
+    left: -4px;
+    top: -1px;
+}
+.transport a.active{
+    color: #fff;
+}
+
+/* select wrap */
+.select{
+    width: 100%;
+    margin: 8px 0;
+}
+.date-select,
+.city-select{
+    position: relative;
+    width: 47%;
+}
+
+/* canvas wrap */
+.map{
+    position: relative;
+    left: 50%;
+    margin-left: -160px;
+    width: 320px;
+    height: 240px;
+}
+#map-canvas,
+#line-canvas,
+#animation-canvas{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.nanhai{
+    position: absolute;
+    top:173px;
+    left:260px;
+    background: url(../image/nanhai.png) no-repeat center center;
+    background-size: 50%;
+    width:54px;
+    height: 67px;
+}
+.lengend{
+    position: absolute;
+    top:200px;
+    left:-10px;
+    background: url(../image/m_bz.png) no-repeat center center;
+    background-size: 50%;
+    width:140px;
+    height: 38px;
+}
+.marktop,.markBottom{
+    font-size: 9px;
+    color: rgba(255,255,255,0.3);
+
+}
+.marktop{
+    margin-top: 9px;
+
+}
+.markBottom {
+    margin-top: 10px;
+    padding-left: 1em;
+}
+.markBottom span{
+    position: absolute;
+    display: inline-block;
+    left: 1px;
+}
+
+/* list wrap */
+.list{
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    background-color: rgba(0,0,0,0.35);
+    text-align: center;
+}
+
+.list-topbar{
+    position: relative;
+    margin-bottom: 16px;
+}
+.list-topbar a{
+    display: inline-block;
+    width: 40%;
+    line-height: 14px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    cursor: pointer;
+}
+.list-topbar a.active{
+    color: #007EFF;
+}
+.list-topbar .horizontal-bar{
+    position: absolute;
+    width: 40%;
+    height: 2px;
+    background-color: #007EFF;
+    border-radius: 2px;
+    left: 0;
+    top: 22px;
+    transition:all 1s;
+    -moz-transition:all 1s; /* Firefox 4 */
+    -webkit-transition:all 1s; /* Safari and Chrome */
+    -o-transition:all 1s; /* Opera */
+}
+
+.list .no-data{
+    font-size: 11px;
+    margin: 30px 0 10px;
+    color: rgba(255,255,255,0.5);
+}
+
+/* list table */
+.list-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.list-table td,
+.list-table th{
+    font-size: 11px;
+    line-height: 36px;
+    height: 36px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.list-table th.fromto{
+    width: 35%;
+}
+.list-table th.fromto,
+.list-table th.degree{
+    position: relative;
+}
+.list-table th .sep{
+    position: absolute;
+    width: 1px;
+    height: 11px;
+    right: 0;
+    border-right: 1px solid rgba(255,255,255, 0.5);
+    top: 12px;
+}
+
+.list-table tr{
+    border-top: 1px solid rgba(255,255,255, 0.2);
+}
+.list-table thead tr{
+    border-top: none;
+}
+.list-table .tr0{
+    border-top: 2px solid rgba(255,255,255, 0.35);
+}
+
+.list-table tr.tr0 .degree,
+.list-table tr.tr1 .degree,
+.list-table tr.tr2 .degree{
+    color: #FFB129;
+}
+.list-table tr.tr0 td.index span,
+.list-table tr.tr1 td.index span,
+.list-table tr.tr2 td.index span{
+    background-color: #EE9D11;
+}
+.list-table tr.tr9 td.index span{
+    width:14px;
+}
+
+.list-table td.index{
+    text-align: right;
+}
+.list-table td.index span{
+    display:inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    background-color: #007EFF;
+    vertical-align: middle;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.list-table .train{
+    color: #FFB129 ;
+}
+.list-table .car{
+    color: #76CC30;
+}
+.list-table .plane{
+    color: #36BAFF;
+}
+
+.list-table span.txt{
+    position: absolute;
+    left: 0;
+    height: 7px;
+    width: 100%;
+    font-size: 7px;
+    line-height: 7px;
+}
+.list-table span.box{
+    display: inline-block;
+    width: 10px;
+    max-height: 90%;
+    position: relative;
+    bottom: -10px;
+    margin-left: -5px;
+}
+.list-table td.train .box{
+    background-color: #FFB129;
+}
+.list-table td.car .box{
+    background-color: #76CC30;
+}
+.list-table td.plane .box{
+    background-color: #36BAFF;
+}
+
+
+@media all and (min-width: 370px) {
+    .title{
+        width: 257px;
+        height: 95px;
+        display: none;
+    }
+    .logo {
+        width: 98px;
+        height: 21px;
+        margin-bottom: 3px;
+    }
+}
+
+@media all and (min-width: 400px) {
+    .title{
+        width: 279px;
+        height: 103px;
+        display: none;
+    }
+    .logo {
+        width: 106px;
+        height: 23px;
+        margin-bottom: 4px;
+    }
+}
+
+@media all and (min-width: 800px){
+    .title{
+        width: 573px;
+        height: 133px;
+        /*background: url(../image/pc/output.png) no-repeat center center;*/
+        background-size: 100%;
+        display: none;
+    }
+    .logo {
+        width: 190px;
+        height: 34px;
+        margin-bottom: 4px;
+        /*background: url(../image/pc/logo.png) no-repeat center center;*/
+        background-size: 100%;
+    }
+    .bg .layer{
+        /*background: #06286B url(../image/pc/bg.jpg) no-repeat; */
+        background-size: 100% auto;
+        width: 100%;
+        height: 100%;
+    }
+    .container{
+        width: 640px;
+    }
+    .map{
+        position: relative;
+        margin-left: 0;
+        left: auto;
+        width: 640px;
+        height: 480px;
+        right: 0;
+    }
+    .nanhai{
+        position: absolute;
+        top:410px;
+        left:580px;
+        background: url(../image/pc/nanhai.png) no-repeat center center;
+        background-size: 100%;
+        width:54px;
+        height: 67px;
+    }    
+    .lengend{
+        position: absolute;
+        top:400px;
+        left:-10px;
+        background: url(../image/pc/pc_bz.png) no-repeat center center;
+        background-size:100% 100%;
+        width:140px;
+        height: 38px;
+    }
+    .list-table td,
+    .list-table th {
+        font-size: 12px;
+    }
+    .list-table span.txt{
+        font-size: 10px;
+    }
+}
+
+@media all and (min-width: 1200px){
+    .title{
+        width: 573px;
+        height: 133px;
+        /*background: url(../image/pc/output.png) no-repeat center center;*/
+        background-size: 100%;
+        margin-left:560px;
+        margin-top: -40px;
+        display: block;
+    }
+    .logo {
+        width: 190px;
+        height: 34px;
+        margin-bottom: 4px;
+        /*background: url(../image/pc/logo.png) no-repeat center center;*/
+        background-size: 100%;
+        position: relative;
+        top:50px;
+    }
+    .bg .layer{
+        background: #06286B url(../image/pc/bg.jpg) repeat; 
+        background-size: 100% auto;
+        width: 100%;
+        height: 100%;
+    }
+    .container{
+        width: 1200px;
+    }
+    .transport{
+        width: 430px;
+        /*margin-top: -20px;*/
+    }
+    .select{
+        width: 430px;
+    }
+
+    .list{
+        width: 400px;
+    }
+
+    .map{
+        position: absolute;
+        margin-left: 0;
+        left: auto;
+        width: 640px;
+        height: 480px;
+        right: 30px;
+        margin-top: -35px;
+    }
+     .nanhai{
+        position: absolute;
+        top:410px;
+        left:580px;
+        background: url(../image/pc/nanhai.png) no-repeat center center;
+        background-size: 100% 100%;
+        width:54px;
+        height: 67px;
+    }  
+    .lengend{
+        position: absolute;
+        top:380px;
+        left:-10px;
+        background: url(../image/pc/pc_bz.png) no-repeat center center;
+        background-size: 100%;
+        width:140px;
+        height: 38px;
+    }
+    .marktop,
+    .markBottom{
+        font-size: 12px;
+        color: rgba(255,255,255,0.6);
+        position: absolute;
+        margin-left: 0;
+        left: auto;
+        left: 525px;
+        width:310px;
+    }
+    .marktop{
+        top:580px;
+    }
+    .markBottom{
+        top:606px;
+        line-height: 18px;
+        padding-left: 7px;
+    }
+    .markBottom span{
+        display: none;
+    }
+    .footer{
+        display: none;
+    }
+    .list-table td,
+    .list-table th {
+        font-size: 12px;
+    }
+    .list-table span.txt{
+        font-size: 10px;
+    }
+
+}

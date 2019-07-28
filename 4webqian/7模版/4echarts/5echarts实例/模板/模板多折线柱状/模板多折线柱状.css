@@ -1,0 +1,60 @@
+.li-one {
+    background-color: #61de38;
+    height: 40px;
+    line-height: 40px;
+    font-size: 30px;
+    font-family: '微软雅黑';
+    color: #1419ef;
+    margin-top: 20px;
+}
+
+.li-two {
+    background-color: #61de38;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: '微软雅黑';
+    color: #1419ef;
+    margin-top: 10px;
+}
+
+.say {
+    min-height: 20px;
+    width: 100%;
+    border: 1px solid #001084;
+}
+
+.li-three {
+    color: #331c23;
+}
+
+.must {
+    color: #ef1414;
+    background-color: aqua;
+}
+
+
+
+
+
+
+/* charts */
+
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    width: 1000px;
+    height:300px;
+    color:#0180EC;
+    background-color:#001084;
+}
+
+.main2 {
+    width: 600px;
+    height:600px;
+    color:#0180EC;
+    background-color:#001084;
+}

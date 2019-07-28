@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.7/lib/theme-chalk/index.css");
+		</style>
+		<link rel="stylesheet" href="动态编辑标签.css" />
+	</head>
+	<body>
+		<div id='app'>
+			<div>vue和element在线</div>
+			<el-tag
+					:key="tag"
+					v-for="tag in dynamicTags"
+					closable
+					:disable-transitions="false"
+					@close="handleClose(tag)">
+				{{tag}}
+			</el-tag>
+			<el-input
+					class="input-new-tag"
+					v-if="inputVisible"
+					v-model="inputValue"
+					ref="saveTagInput"
+					size="small"
+					@keyup.enter.native="handleInputConfirm"
+					@blur="handleInputConfirm"
+			>
+			</el-input>
+			<el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+		<script type="text/javascript" src="动态编辑标签.js"></script>
+	</body>
+<html>

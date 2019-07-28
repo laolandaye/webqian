@@ -1,0 +1,427 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>公交线路查询</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.5&key=88cd20bd9a0589aaed401b8a56af0ce9&plugin=AMap.Driving,AMap.LineSearch"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+	<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+	<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<div class="button-group" style="background-color: white">
+    <div>
+        地图经纬度坐标：(<b>鼠标左键在地图上单击获取经纬度坐标</b>)<br>
+        lng：<input type="text" id="lngX"/>
+        lat：<input type="text" id="latY"/><br>
+        地图地理像素坐标：<br>
+        X：&nbsp;<input type="text" id="pixelx"/>
+        Y：&nbsp;<input type="text" id="pixely"/>
+    </div>
+    <div  style="margin-top:5px">
+        <input id="lng2pixel" type="button" class="button" value="经纬度转地理像素坐标"/>
+        <input id="pixel2lng" type="button" class="button" value="地理像素坐标转经纬度"/>
+    </div>
+</div>
+<script language="javascript">
+    /*
+     * 该示例主要流程分为三个步骤
+     * 1. 首先调用公交路线查询服务(lineSearch)
+     * 2. 根据返回结果解析，输出解析结果(lineSearch_Callback)
+     * 3. 在地图上绘制公交线路()
+     */
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [112.90747518931073, 27.859305978350736],//地图中心点
+        zoom: 13 //地图显示的缩放级别
+    });
+	map.setMapStyle('amap://styles/normal');
+	
+	function drawgrid(){
+		var point1lng=113.10;
+		var point1lat=28.00;
+		var point2lng=112.56
+		var point2lat=27.78;
+		var hengnum=12;
+		var zongnum=28;
+		var path;
+		var templat=point2lat;
+		var templng=point2lng;
+		for(var i = 0;i<hengnum;i++){			
+			path=[
+				[point1lng,templat],
+				[point2lng,templat]
+			]
+			templat=templat+0.02;
+			busPolyline = new AMap.Polyline({
+				map: map,
+				path: path,
+				strokeColor: "red",//线颜色
+				strokeWeight: 1//线宽
+			});
+			map.setFitView();
+		}
+		for(var i = 0;i<zongnum;i++){			
+			path=[
+				[templng,point1lat],
+				[templng,point2lat]
+			]
+			templng=templng+0.02;
+			busPolyline = new AMap.Polyline({
+				map: map,
+				path: path,
+				strokeColor: "red",//线颜色
+				strokeWeight: 1//线宽
+			});
+			map.setFitView();
+		}
+	}
+	var stations=new Array();
+	stations.push(new AMap.LngLat(112.090246,27.691764));
+	stations.push(new AMap.LngLat(112.885596,27.857231));
+	var path = { waypoints: [] }; 
+	path.waypoints.push([112.521802,27.735418])
+	//path.waypoints.push([112.664624,27.481385]) 
+	var drivingOption = {  
+			autoFitView: false,
+            policy: AMap.DrivingPolicy.LEAST_DISTANCE   
+        };
+    //构造路线导航类
+    var driving = new AMap.Driving(drivingOption); 
+	
+	var waypath="";
+	var exesql="";
+    // 根据起终点经纬度规划驾车导航路线
+    //driving.search(lineArr);
+	var stationLength=stations.length;
+	for(var i = 0; i < stationLength;i++){
+		if(i != stationLength-1){
+			driving.search(stations[i], stations[i+1],path,drivingDrawLine);
+		}
+	}
+	
+	function drivingDrawLine(status,result){
+		var routeS = result.routes;
+		var drawpath
+		var stepEndPonit;
+		if(routeS.length > 0){
+			var steps = routeS[0].steps;
+			for(var i=0 ;i< steps.length;i++){
+				if(i==0){
+					drawpath = new Array()
+					drawpath=steps[i].path;
+					for(var j=0 ;j< drawpath.length;j++){
+						waypath=waypath+drawpath[j].lng+","+drawpath[j].lat+";"
+					}
+					stepEndPonit=drawpath[drawpath.length-1];
+					var polyline = new AMap.Polyline({
+						map: map,
+						path: drawpath,
+						strokeColor: "#9400D3",
+						strokeOpacity: 0.7,
+						strokeWeight: 4,
+						strokeDasharray: [10, 5]
+					});
+				}else{
+					drawpath = new Array();
+					drawpath=steps[i].path;
+					for(var j=0 ;j< drawpath.length;j++){
+						waypath=waypath+drawpath[j].lng+","+drawpath[j].lat+";"
+					}
+					drawpath.unshift(stepEndPonit);
+					stepEndPonit=drawpath[drawpath.length-1];
+					var polyline = new AMap.Polyline({
+						map: map,
+						path: drawpath,
+						strokeColor: "#9400D3",
+						strokeOpacity: 0.7,
+						strokeWeight: 4,
+						strokeDasharray: [10, 5]
+					});					
+				}
+			}
+		}
+		exesql="update bus_line set path_lntlat = '"+waypath+"'";
+		console.log(waypath);
+	}
+	
+	 AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
+    //启动页面
+		initPage(SimpleMarker);
+	});
+  
+//  map.on("zoomchange",function(){  
+//			alert(map.getZoom());				
+//        }) 
+
+	function initPage(SimpleMarker) {
+	
+		for(var i = 0;i<stations.length;i++){
+			//创建SimpleMarker实例
+			new SimpleMarker({
+				map: map,
+				iconStyle:"",
+				position: stations[i],
+		//		iconStyle:{src: 'test.png',style: {width:'20px'}},
+				showPositionPoint:{color: 'white',radius: 3}
+			});		
+		}
+	}
+
+    /*公交线路查询*/
+    function lineSearch() {
+        //实例化公交线路查询类，只取回一条路线
+        var linesearch = new AMap.LineSearch({
+            pageIndex: 1,
+            city: '湘潭',
+            pageSize: 1,
+            extensions: 'all'
+        });
+        //搜索“536”相关公交线路
+        linesearch.search('101路', function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+                lineSearch_Callback1(result);
+            } else {
+                alert(result);
+            }
+        });
+
+    }
+    /*公交路线查询服务返回数据解析概况*/
+    function lineSearch_Callback1(data) {
+        var lineArr = data.lineInfo;
+        var lineNum = data.lineInfo.length;
+        if (lineNum == 0) {
+        } else {
+            for (var i = 0; i < lineNum; i++) {
+                var pathArr = lineArr[i].path;
+                var stops = lineArr[i].via_stops;
+                var startPot = stops[0].location;
+                var endPot = stops[stops.length - 1].location;
+
+                if (i == 0) drawbusLine1(startPot, endPot, pathArr);
+            }
+        }
+    }
+	
+    /*公交路线查询服务返回数据解析概况*/
+    function lineSearch_Callback2(data) {
+        var lineArr = data.lineInfo;
+        var lineNum = data.lineInfo.length;
+        if (lineNum == 0) {
+        } else {
+            for (var i = 0; i < lineNum; i++) {
+                var pathArr = lineArr[i].path;
+                var stops = lineArr[i].via_stops;
+                var startPot = stops[0].location;
+                var endPot = stops[stops.length - 1].location;
+
+                if (i == 0) drawbusLine2(startPot, endPot, pathArr);
+            }
+        }
+    }
+	
+    /*公交路线查询服务返回数据解析概况*/
+    function lineSearch_Callback3(data) {
+        var lineArr = data.lineInfo;
+        var lineNum = data.lineInfo.length;
+        if (lineNum == 0) {
+        } else {
+            for (var i = 0; i < lineNum; i++) {
+                var pathArr = lineArr[i].path;
+                var stops = lineArr[i].via_stops;
+                var startPot = stops[0].location;
+                var endPot = stops[stops.length - 1].location;
+
+                if (i == 0) drawbusLine3(startPot, endPot, pathArr);
+            }
+        }
+    }
+    /*绘制路线*/
+    function drawbusLine1(startPot, endPot, BusArr) {
+        //绘制起点，终点
+        new AMap.Marker({
+            map: map,
+            position: [startPot.lng, startPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/start.png",
+            zIndex: 10
+        });
+        new AMap.Marker({
+            map: map,
+            position: [endPot.lng, endPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/end.png",
+            zIndex: 10
+        });
+        //绘制乘车的路线
+        busPolyline = new AMap.Polyline({
+            map: map,
+            path: BusArr,
+            strokeColor: "#999999",//线颜色
+            strokeWeight: 6//线宽
+        });
+        map.setFitView();
+    }
+	
+    /*绘制路线*/
+    function drawbusLine2(startPot, endPot, BusArr) {
+        //绘制起点，终点
+        new AMap.Marker({
+            map: map,
+            position: [startPot.lng, startPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/start.png",
+            zIndex: 10
+        });
+        new AMap.Marker({
+            map: map,
+            position: [endPot.lng, endPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/end.png",
+            zIndex: 10
+        });
+        //绘制乘车的路线
+        busPolyline = new AMap.Polyline({
+            map: map,
+            path: BusArr,
+            strokeColor: "#999999",//线颜色
+            strokeWeight: 6//线宽
+        });
+        map.setFitView();
+    }
+	
+    /*绘制路线*/
+    function drawbusLine3(startPot, endPot, BusArr) {
+        //绘制起点，终点
+        new AMap.Marker({
+            map: map,
+            position: [startPot.lng, startPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/start.png",
+            zIndex: 10
+        });
+        new AMap.Marker({
+            map: map,
+            position: [endPot.lng, endPot.lat], //基点位置
+            icon: "http://webapi.amap.com/theme/v1.3/markers/n/end.png",
+            zIndex: 10
+        });
+        //绘制乘车的路线
+        busPolyline = new AMap.Polyline({
+            map: map,
+            path: BusArr,
+            strokeColor: "#999999",//线颜色
+            strokeWeight: 6//线宽
+        });
+        map.setFitView();
+    }
+    //lineSearch();
+	drawgrid();
+	
+	function parseLineInfo(lineInfo){
+		var lineName=lineInfo.name;
+		var stops=lineInfo.via_stops;
+		var stationName, stationLng, stationLat;
+		if(stops.length > 0){
+			for(var i =0;i<stops.length;i++){
+				stationName=stops[i].name;
+				stationLng=stops[i].location.lng;
+				stationLat=stops[i].location.lat;
+				//向后台数据库插入线路站台信息
+			}
+		}
+	}
+	
+    //just some colors
+    var colors = [
+        "#3366cc", "#3366cc", "#3366cc", "#3366cc", "#3366cc", "#0099c6", "#dd4477", "#66aa00",
+        "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707",
+        "#651067", "#329262", "#5574a6", "#3b3eac"
+    ];
+
+	 AMapUI.loadUI(['geo/DistrictExplorer'], function(DistrictExplorer) {
+
+        //创建一个实例
+        var districtExplorer = new DistrictExplorer({
+            map: map
+        });
+
+
+        function renderAreaNode(areaNode) {
+
+            //绘制子区域
+            districtExplorer.renderSubFeatures(areaNode, function(feature, i) {
+
+                var fillColor = colors[i % colors.length];
+                var strokeColor = colors[colors.length - 1 - i % colors.length];
+
+                return {
+                    cursor: 'default',
+                    bubble: true,
+                    strokeColor: strokeColor, //线颜色
+                    strokeOpacity: 1, //线透明度
+                    strokeWeight: 1, //线宽
+                    fillColor: fillColor, //填充色
+                    fillOpacity: 0.35, //填充透明度
+                };
+            });
+
+            //绘制父区域
+            districtExplorer.renderParentFeature(areaNode, {
+                cursor: 'default',
+                bubble: true,
+                strokeColor: 'black', //线颜色
+                strokeOpacity: 1, //线透明度
+                strokeWeight: 1, //线宽
+                fillColor: null, //填充色
+                fillOpacity: 0.35, //填充透明度
+            });
+        }
+
+        var adcodes = [430300];
+
+        districtExplorer.loadMultiAreaNodes(adcodes, function(error, areaNodes) {
+
+            //清除已有的绘制内容
+            districtExplorer.clearFeaturePolygons();
+
+
+            for (var i = 0, len = areaNodes.length; i < len; i++) {
+                renderAreaNode(areaNodes[i]);
+            }
+
+            //更新地图视野
+            map.setFitView(districtExplorer.getAllFeaturePolygons());
+        });
+    });
+	
+	    var $= function(elementId){
+        return document.getElementById(elementId);
+    }
+    var lngX = $('lngX'),latY = $('latY');
+    var pixelX = $('pixelx'),pixelY = $('pixely');
+    map.on('click', getLnglat);
+    function getLnglat(e) {
+        lngX.value = e.lnglat.getLng();
+        latY.value = e.lnglat.getLat();
+    }
+
+    AMap.event.addDomListener($('lng2pixel'), 'click', function() {
+        var px = lngX.value,py = latY.value;
+        var pixel = map.lnglatToPixel([px, py], 10);
+        pixelX.value = pixel.getX();
+        pixelY.value = pixel.getY();
+    });
+
+    AMap.event.addDomListener($('pixel2lng'), 'click', function() {
+        var lnglatX = parseInt(pixelX.value),lnglatY = parseInt(pixelY.value);
+        var ll = map.pixelToLngLat(new AMap.Pixel(lnglatX, lnglatY), 10);
+        lngX.value = ll.getLng();
+        latY.value = ll.getLat();
+    });
+	
+</script>
+</body>
+</html>

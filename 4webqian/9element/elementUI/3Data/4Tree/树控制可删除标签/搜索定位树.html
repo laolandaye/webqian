@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.7/lib/theme-chalk/index.css");
+		</style>
+		<link rel="stylesheet" href="搜索定位树.css" />
+	</head>
+	<body>
+		<div id='app'>
+			<div>搜索定位树</div>
+			<div class="search-bus">
+                    <el-autocomplete
+                                     ref="complete"
+                                     class="inline-input"
+                                     placeholder="搜索车牌号"
+                                     size="mini"
+                                     v-model="searchInput"
+                                     @select="handleSelect"
+                                     :fetch-suggestions="querySearchAsync"
+                                     :trigger-on-focus="true"
+                                     >
+                        <template slot-scope="{item}">
+                             <div class="name" key="item.car_no">{{item.car_no}}</div>
+                        </template>
+                    </el-autocomplete>
+                    
+                     <div class="all-car" ref = "tree1">
+                        <el-tree
+                                ref="tree"
+                                :data="carNos"
+                                :props="defaultProps"
+                                :default-expanded-keys="defaultExpandedKeys"
+                                node-key="id"
+                                accordion
+                                @node-click="handleNodeClick"
+                        >
+                             <span slot-scope="{ node, data }">
+                                 <span :ref = "node.id">{{ node.label }}{{data.car}}</span>
+                             </span>
+                        </el-tree>
+
+                    </div>
+            </div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+		<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+		<script type="text/javascript" src="../../../js/common.js" ></script>
+		<script type="text/javascript" src="搜索定位树.js"></script>
+	</body>
+<html>

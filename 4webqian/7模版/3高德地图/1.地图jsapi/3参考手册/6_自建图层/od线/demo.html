@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<title>出行热度 - 腾讯地图</title>
+		<link rel="stylesheet" href="./css/main.css">
+	</head>
+
+	<body>
+		<span class="important">
+			测试：demo.html，demo.js<br />
+			测试数据：data.js <br />
+		</span>
+		<span class="important">1.单边流动：请根据需要在spark.js的paint()方法中进行删除</span>
+		<span><img src="1.png"></span>
+		 <br />
+		<span class="important">2.速度spark.js</span>
+		<span><img src="2.png"></span>
+		 <br />
+		<span class="important">3.弧度arc.js</span>
+		<span><img src="3.png"></span>
+		<div class="container" id="content">
+			<div class="map">
+				<canvas class="canvas" id="map-canvas"></canvas>
+				<canvas class="canvas" id="line-canvas" width="640" height="480"></canvas>
+				<canvas class="canvas" id="animation-canvas" width="640" height="480"></canvas>
+			</div>
+		</div>
+		
+		<!-- 需要引入的动画js -->
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/draw/arc.js" ></script>
+		<script type="text/javascript" src="js/draw/spark.js" ></script>
+		<script type="text/javascript" src="js/draw/mixin.js" ></script>
+		<script type="text/javascript" src="js/draw/AnimationScene.js" ></script>
+		<!--  -->
+		
+		<!-- 用于demo.js，这里用于写公共方法 -->
+		<script type="text/javascript" src="data.js" ></script>
+		<script type="text/javascript" src="demo.js" ></script>
+		
+	</body>
+</html>
