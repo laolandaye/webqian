@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父向子props动态静态传递</title>
+</head>
+<body>
+
+<div id="app">
+  <introduce title="大家好，我是锋哥"></introduce>
+  <introduce :title="title"></introduce>
+
+  <!-- 即便 `42` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+  <!-- 这是一个JavaScript表达式而不是一个字符串。-->
+  <blog-post v-bind:likes="42"></blog-post>
+  <!-- 用一个变量进行动态赋值。-->
+  <blog-post v-bind:likes="post.likes"></blog-post>
+
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+  // 全局组件
+  Vue.component("introduce",{
+    template:'<span><h1>{{title}}</h1></span>',
+    props:['title'] // 通过props来接收一个父组件传递的属性
+  });
+  // 局部组件
+  const blogPost = {
+    template:'<span>你点了我 {{likes}}次</span>',
+    props: {
+      likes: {
+        type: Number,
+        default: 0,
+        required: true
+      }
+    }
+  };
+
+  var vm = new Vue({
+    el:"#app",
+    data(){
+      return {
+        title: "大家好，我是xing哥",
+        post:{
+          likes: 69
+        },
+      }
+    },
+    components:{
+      blogPost
+    }
+  })
+</script>
+</body>
+</html>
