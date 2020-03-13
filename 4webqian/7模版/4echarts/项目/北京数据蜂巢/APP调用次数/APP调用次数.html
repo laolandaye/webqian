@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="APP调用次数.css" />
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<header>
+			<span>调用情况统计: {{ appData.app.appLabel }}</span>
+		</header>
+		<main>
+			<aside>
+				<div class="app-logo">
+					<div class="app-logo-img">
+						<img src="image/app-logo.png"></img>
+					</div>
+					<div class="app-logo-name">
+						<span>APP 应用程序</span>
+					</div>
+				</div>
+				<div class="app-req-times-day">
+					<span class="title">今日调用次数</span>
+					<span class="value">{{ appData.appReqTimesDay }}</span>
+				</div>
+				<div class="times-week">
+					<div class="times-week-header">
+						<span class="title">日均调用次数</span>
+						<span class="value">{{ appData.appAvgReqTimes }}</span>
+					</div>
+					<div class="times-week-body">
+						<div class="chart" ref="appReqTimesInfoWeekOne"></div>
+					</div>
+				</div>
+				<div class="times-week">
+					<div class="times-week-header">
+						<span class="title">累计调用次数</span>
+						<span class="value">{{ appData.appReqTimes }}</span>
+					</div>
+					<div class="times-week-body">
+						<div class="chart" ref="appReqTimesInfoWeekTwo"></div>
+					</div>
+				</div>
+			</aside>
+			<article>
+				<section class="app-req-times-info-day">
+					<div class="chart" ref="appReqTimesInfoDay"></div>
+				</section>
+				<section class="app-req-times-info-by-api">
+					<div class="chart" ref="appReqTimesInfoByApi"></div>
+				</section>
+			</article>
+		</main>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script type="text/javascript" src="../../../5echarts实例/static/echarts-4.1.0/echarts.min.js" ></script>
+	<script type="text/javascript" src="../../../5echarts实例/static/common.js" ></script>
+	<script type="text/javascript" src="APP调用次数.js" ></script>
+	</body>
+</html>

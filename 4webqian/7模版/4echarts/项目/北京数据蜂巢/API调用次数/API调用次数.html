@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="API调用次数.css" />
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<header>
+			<span>调用情况统计:{{ apiData.api.apiLabel }}</span>
+		</header>
+		<main>
+			<aside>
+				<section class="api-req-times-week">
+					<div class="times-week">
+						<div class="times-week-header">
+							<div class="times-week-header-left">
+								<div>
+									<span class="title">日均调用次数</span>
+									<span class="value">{{ apiData.apiAvgReqTimes }}</span>
+								</div>
+							</div>
+							<div class="times-week-header-right">
+								<div class="api-logo-img">
+									<img src="image/api-logo1.png"></img>
+								</div>
+							</div>
+						</div>
+						<div class="times-week-body">
+							<div class="chart" ref="apiReqTimesInfoWeekOne"></div>
+						</div>
+					</div>
+					<div class="times-week">
+						<div class="times-week-header">
+							<div class="times-week-header-left">
+								<div>
+									<span class="title">累计调用次数</span>
+									<span class="value">{{ apiData.apiReqTimes }}</span>
+								</div>
+							</div>
+							<div class="times-week-header-right">
+								<div class="api-logo-img">
+									<img src="image/api-logo2.png"></img>
+								</div>
+							</div>
+						</div>
+						<div class="times-week-body">
+							<div class="chart" ref="apiReqTimesInfoWeekTwo"></div>
+						</div>
+					</div>
+				</section>
+				<section class="api-req-times-info-day">
+					<div class="chart" ref="apiReqTimesInfoDay"></div>
+				</section>
+			</aside>
+			<article>
+				<section class="api-info-by-app">
+					<div class="api-info-by-app-main">
+						<div class="api-info-by-app-main-left">
+							<div class="times-week-item">
+								<span class="title">当前绑定APP个数</span>
+								<span class="value">{{ apiData.appCnt }}</span>
+							</div>
+							<div class="times-week-item">
+								<span class="title">APP平均调用次数</span>
+								<span class="value">{{ apiData.apiSuccessTimesAppAvg }}</span>
+							</div>
+							<div class="times-week-item">
+								<span class="title">APP最高调用次数</span>
+								<span class="value">{{ apiData.apiReqTimesAppMax }}</span>
+							</div>
+							<div class="times-week-item">
+								<span class="title">APP最高成功调用次数</span>
+								<span class="value">{{ apiData.apiSuccessTimesAppMax }}</span>
+							</div>
+						</div>
+						<div class="api-info-by-app-main-right">
+							<div class="chart" ref="apiReqTimesInfoByAppOne"></div>
+						</div>
+					</div>
+				</section>
+				<section class="api-req-times-info-by-app">
+					<div class="chart" ref="apiReqTimesInfoByAppTwo"></div>
+				</section>
+			</article>
+		</main>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<!--	<script type="text/javascript" src="../../../5echarts实例/static/echarts-4.1.0/echarts.min.js" ></script>-->
+	<script type="text/javascript" src="../../../5echarts实例/static/echartsss.js" ></script>
+	<script type="text/javascript" src="../../../5echarts实例/static/common.js" ></script>
+	<script type="text/javascript" src="API调用次数.js" ></script>
+	</body>
+</html>

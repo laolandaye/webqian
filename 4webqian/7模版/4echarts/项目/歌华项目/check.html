@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			@import url("//unpkg.com/element-ui@2.4.6/lib/theme-chalk/index.css");
+		</style>
+		<style>
+
+			/* 布局样式 */
+			html {
+				margin: 0px;
+				padding: 0px;
+				height: 100%;
+			}
+			body  {
+				margin: 0px;
+				padding: 0px;
+				height: 100%;
+			}
+			#app {
+				width: 100%;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+			header {
+				flex:1;
+				background:rgb(94,184,250);
+				opacity:1;
+				padding-left: 2%;
+			}
+			header .btn-header {
+				font-size: 20px;
+				line-height: 20px;
+			}
+			header span {
+				font-size: 14px;
+				line-height: 15px;
+				color: #fff;
+			}
+			main {
+				flex:19;
+				background:rgba(245,247,250,1);
+				opacity:1;
+				display: flex;
+				justify-content: center;
+			}
+			main aside {
+				border-radius:10px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				margin-top: 2%;
+				width: 600px;
+				height: 200px;
+				background: #fff;
+			}
+			main aside section {
+				padding-right: 5px;
+			}
+
+			/********/
+			.el-icon-circle-close {
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+	<div id="app" v-cloak>
+		<header>
+			<el-button type="text" icon="el-icon-circle-close" class="btn-header"></el-button>
+			<span>请输入动态口令</span>
+		</header>
+		<main>
+			<aside>
+				<section>
+					<span>请输入动态口令：</span>
+				</section>
+				<section>
+					<el-input v-model="dynamicToken" placeholder=""></el-input>
+				</section>
+				<section class="btn-submit">
+					<el-button type="primary" @click="check">确定</el-button>
+				</section>
+			</aside>
+		</main>
+	</div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script src="//unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+
+		'use strict';//严格模式
+		let vue = new Vue({
+			el: "#app",
+			data: function () {
+				return {
+					dynamicToken:'',
+					enterId:'',
+					uid:''
+				}
+			},
+			computed: {
+			},
+			methods: {
+				getContextPath: function () {
+					let local = document.location;
+					let contextPath = "/" + local.pathname.split('/')[1];
+					let basePath = local.protocol + "//" + local.host + "/" + contextPath;
+					this.contextPath = contextPath;//项目路径
+				},
+				check:function () {
+					let self = this;
+					axios.post(this.contextPath + "/api/checkDynamicToken",
+							{
+								dynamicToken:self.dynamicToken,
+								enterId:self.enterId,
+								uid:self.uid
+							}
+					).then(function(result) {
+						const data = result.data;
+					});
+				}
+			},
+			watch: {//监听数据变化
+			},
+			beforeCreate: function(){
+				let self = this;
+				this.contextPath = '';
+			},
+			created: function () {
+				let self = this;
+				this.getContextPath();
+			},
+			mounted: function () {
+				let self = this;
+				this.enterId = this.$kun.getUrlParam("enterId");
+				this.uid = this.$kun.getUrlParam("userNumber");
+			},
+			distroyed: function () {
+				let self = this;
+			}
+		});
+	</script>
+	</body>
+</html>

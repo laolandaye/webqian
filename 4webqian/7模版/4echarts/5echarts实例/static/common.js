@@ -26,5 +26,17 @@ let commonMain = {
             }
         }
         return "";
+    },
+    getJpaMany2One:function (manyItems, oneItems, ids) {
+        let res = JSON.parse(JSON.stringify(manyItems));
+        labelB:for (let i = 0; i < manyItems.length; i++) {
+            for (let j = 0; j < oneItems.length; j++) {
+                if (manyItems[i][ids[0]] == oneItems[j][ids[0]]) {
+                    res[i][ids[1]] = oneItems[j];
+                    continue labelB;
+                }
+            }
+        }
+        return res;
     }
 }

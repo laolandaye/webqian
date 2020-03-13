@@ -1,0 +1,222 @@
+
+/* 布局样式 */
+html {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+body  {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+#app {
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+header {
+    height: 10%;
+    background:rgba(255,255,255,1);
+    opacity:1;
+}
+header span {
+    font-size:22px;
+    font-family:Microsoft YaHei;
+    font-weight:bold;
+    line-height:60px;
+    color:rgba(34,34,34,1);
+    opacity:1;
+    margin-left: 44px;
+}
+main {
+    background:rgba(245,247,250,1);
+    opacity:1;
+    height: 90%;
+    display: flex;
+}
+main aside {
+    border-radius:10px;
+    width: 48%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+aside .api-req-times-week {
+    height: 40%;
+    margin-bottom: 1%;
+    display: flex;
+}
+
+aside .api-req-times-week .times-week {
+    background:rgba(255,255,255,1);
+    box-shadow:0px 5px 15px rgba(0,0,0,0.08);
+    opacity:1;
+    border-radius:10px;
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    margin: 0 1% 0 1%;
+}
+aside .api-req-times-week .times-week .times-week-header{
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-left{
+    flex: 7;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-left div{
+    background:rgba(0,187,139,0.06);
+    opacity:1;
+    border-radius:10px;
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-left div .title{
+    position: absolute;
+    left: 20px;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-left div .value{
+    position: absolute;
+    right: 20px;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-right{
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-right .api-logo-img {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+aside .api-req-times-week .times-week .times-week-header .times-week-header-right .api-logo-img img {
+    height: 81px;
+    width: 81px;
+}
+aside .api-req-times-week .times-week .times-week-body{
+    flex: 3;
+}
+aside .api-req-times-info-day {
+    background: rgba(255,255,255,1);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+    opacity: 1;
+    border-radius: 10px;
+    height: 58%;
+    margin: 1%;
+}
+aside .app-req-times-day {
+    flex: 1;
+    position: relative;
+    background: rgba(0,124,86,0.03);
+    opacity: 1;
+    border-radius: 6px;
+}
+aside .app-req-times-day .title{
+    position: absolute;
+    left: 20px;
+}
+aside .app-req-times-day .value{
+    position: absolute;
+    right: 20px;
+}
+main article {
+    width: 48%;
+    margin: 2% 2% 2% 0;
+}
+main article section {
+    background:rgba(255,255,255,1);
+    box-shadow:0px 5px 15px rgba(0,0,0,0.08);
+    opacity:1;
+    border-radius:10px;
+    height: 48%;
+}
+.app-req-times-info-day {
+    margin-bottom: 2%;
+}
+.api-info-by-app {
+    display: flex;
+    flex-direction: column;
+}
+.api-info-by-app .api-info-by-app-header{
+    flex: 1;
+}
+.api-info-by-app-header span {
+    font-size: 15px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    line-height: 30px;
+    color: rgba(34,34,34,1);
+    opacity: 1;
+    margin-left: 10px;
+}
+.api-info-by-app .api-info-by-app-main{
+    flex: 6;
+    display: flex;
+}
+.api-info-by-app-main .api-info-by-app-main-left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.api-info-by-app-main-left .times-week-item {
+    flex: 1;
+    text-align: center;
+    background: rgba(0,187,139,0.06);
+    opacity: 1;
+    border-radius: 10px;
+    margin: 5% 2% 5% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.api-info-by-app-main-left .times-week-item .title {
+    position: absolute;
+    left: 5px;
+}
+.api-info-by-app-main-left .times-week-item .value {
+    position: absolute;
+    right: 5px;
+}
+.api-info-by-app-main .api-info-by-app-main-right{
+    flex: 2;
+}
+.api-req-times-info-by-app {
+    margin-top: 2%;
+}
+/* 布局样式 end */
+/* 样式 */
+.chart {
+    width: 100%;
+    height: 100%;
+}
+.title {
+    font-size:12px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    line-height:55px;
+    color:rgba(135,135,135,1);
+    opacity:1;
+}
+.value {
+    font-size:26px;
+    font-family:Microsoft YaHei;
+    font-weight:bold;
+    line-height:55px;
+    color:rgba(0,137,95,1);
+    opacity:1;
+}
+/* 样式 end */
